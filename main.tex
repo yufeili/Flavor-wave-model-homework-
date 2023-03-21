@@ -36,8 +36,22 @@
 %\makeatother
 \begin{document}
 \maketitle
-A(1). Assume a particle can be discribed by spin only, with $S=1$. and the Hamiltonian is 
+\indent A. In this part, we will develop a method solving the ground state without diagonalizing the Hamiltonian.\\
+\indent (1).  Assume a particle can be discribed by spin only, with $S=1$. and the Hamiltonian is 
 $$ H= S_z.
 $$
-Write down the matrix form for 
+Write down the matrix form for $H$, the eigenstates of $H$ and their energies. We will write down the ground state to be $\left|a_0\right>$\\
+\indent (2). Assume a initial state to be $\left|\psi_0\right>=\frac{1}{\sqrt{3}}(1,1,1)$. Let $\varepsilon=10^{-2}$. Calculate 
+$$\left|\phi_1\right>=1-\varepsilon H \left|\psi_0\right>$$
+$$\left|\psi_1\right>=\frac{\left|\phi_1\right>}{\left<\phi_1|\phi_1\right>}$$
+Look at the $\left|\psi_1\right>$, and show that  there are more weights of ground state in $\left|\psi_1\right>$ thatn $\left|\psi_0\right>$.\\
+\indent (3). Define 
+$$\left|\phi_{n+1}\right>=1-\varepsilon H \left|\psi_n\right>$$
+$$\left|\psi_{n+1}\right>=\frac{\left|\phi_{n+1}\right>}{\left<\phi_{n+1}|\phi_{n+1}\right>}.$$
+Draw (i)$\left|\left<a_0|\psi_n\right>\right|^2$ as a function of n. and 
+(ii) $\left<\psi_n|H|\psi_n\right>$ as a function of n. Also try with differenct positive values of $\varepsilon$ and see how the value will change the speed of converging.\\
+\indent (4). repeat (2) and (3) with $\left|\psi_0\right>=(0,1,0)$ 
+\indent (5). For a general Hamiltonian
+$$ H = \sum_{i=0}^{m-1} E_{i} \left|a_i\right>\left<a_i\right|
+$$
 \end{document}
