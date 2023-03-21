@@ -1,2 +1,2 @@
 # Flavor-wave-model-homework-
-These are
+These are homework problems to understand flavor wave mode
