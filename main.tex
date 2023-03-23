@@ -42,11 +42,11 @@ $$ H= S_z.
 $$
 Write down the matrix form for $H$, the eigenstates of $H$ and their energies. We will write down the ground state to be $\left|a_0\right>$\\
 \indent (2) Assume a initial state to be $\left|\psi_0\right>=\frac{1}{\sqrt{3}}(\left|S_z=-1\right>+\left|S_z=0\right>+\left|S_z=1\right>)$. Let $\varepsilon=10^{-2}$. Calculate 
-$$\left|\phi_1\right>=1-\varepsilon H \left|\psi_0\right>$$
+$$\left|\phi_1\right>=\left(1-\varepsilon H \right)\left|\psi_0\right>$$
 $$\left|\psi_1\right>=\frac{\left|\phi_1\right>}{\left<\phi_1|\phi_1\right>}$$
 Look at the $\left|\psi_1\right>$, and show that  there are more weights of ground state in $\left|\psi_1\right>$ than $\left|\psi_0\right>$.\\
 \indent (3) Define 
-$$\left|\phi_{n+1}\right>=1-\varepsilon H \left|\psi_n\right>$$
+$$\left|\phi_{n+1}\right>=\left(1-\varepsilon H\right) \left|\psi_n\right>$$
 $$\left|\psi_{n+1}\right>=\frac{\left|\phi_{n+1}\right>}{\left<\phi_{n+1}|\phi_{n+1}\right>}.$$
 Draw (i)$\left|\left<a_0|\psi_n\right>\right|^2$ as a function of $n$. and 
 (ii) $\left<\psi_n|H|\psi_n\right>$ as a function of n. Also try with differenct positive values of $\varepsilon$ and see how the value will change the speed of converging.\\
@@ -58,5 +58,12 @@ with the eigenenergies $E_0<E_1\leq E_2 \leq \ldots\leq E_{d-1}$, prove that $\f
 \lim_{n\rightarrow\infty} \left|\left<a_0|\psi_n\right>\right|^2=1.
 $$
 \indent Hint: Consider an $\varepsilon$ that $0<\varepsilon<1/|E_{d-1}|$ and find a $q$ that $0<q<1$ and $\left(1-\sqrt{\left|\left<a_0|\psi_{n+1}\right>\right|^2}\right)<q\left(1-\sqrt{\left|\left<a_0|\psi_{n}\right>\right|^2}\right)$.\\
-B. This part is about mean field theory
+\indent (6) Now we know that this algorithrm always converges. Let's figure out how to make it fast. Consider a Hamiltonian in (5) with conditions $d>2$ and $E_0<E_1<E_{d-1}$. Define:$$\left|\phi_{n+1}\right>=\left(-H+z\right) \left|\psi_n\right>$$
+$$\left|\psi_{n+1}\right>=\frac{\left|\phi_{n+1}\right>}{\left<\phi_{n+1}|\phi_{n+1}\right>}.$$
+where $z$ is a real number and define $x_n=1-\left|\left<a_0|\psi_n\right>\right|$
+. Prove that (i) $\forall z >\frac{-E_0-E_{d-1}}{2}$, $\exists q$, $0< q <1$ and $$
+\lim _{n\rightarrow \infty} \frac{x_{n+1}}{x_n}=q,
+$$
+and (ii) $q$ is minimized when $$z=-\frac{1}{2}\left(E_1+E_{d-1}\right)$$\\
+B. This part is to use the method in A to solve the ground state with mean-field approximation. 
 \end{document}
