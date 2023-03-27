@@ -58,6 +58,7 @@ with the eigenenergies $E_0<E_1\leq E_2 \leq \ldots\leq E_{d-1}$, prove that $\f
 \lim_{n\rightarrow\infty} \left|\left<a_0|\psi_n\right>\right|^2=1.
 $$
 \indent Hint: Consider an $\varepsilon$ that $0<\varepsilon<1/|E_{d-1}|$ and find a $q$ that $0<q<1$ and $\left(1-\sqrt{\left|\left<a_0|\psi_{n+1}\right>\right|^2}\right)<q\left(1-\sqrt{\left|\left<a_0|\psi_{n}\right>\right|^2}\right)$.\\
+\indent Comment: From this part, to make sure the algorithm works, a small fluctuaction should be added in each step to get a nonzero $\left<a_0|\psi_0\right>$.\\
 \indent (6) Now we know that this algorithrm always converges. Let's figure out how to make it fast. Consider a Hamiltonian in (5) with conditions $d>2$ and $E_0<E_1<E_{d-1}$. Define:$$\left|\phi_{n+1}\right>=\left(-H+z\right) \left|\psi_n\right>$$
 $$\left|\psi_{n+1}\right>=\frac{\left|\phi_{n+1}\right>}{\left<\phi_{n+1}|\phi_{n+1}\right>}.$$
 where $z$ is a real number and define $x_n=1-\left|\left<a_0|\psi_n\right>\right|$
@@ -65,5 +66,65 @@ where $z$ is a real number and define $x_n=1-\left|\left<a_0|\psi_n\right>\right
 \lim _{n\rightarrow \infty} \frac{x_{n+1}}{x_n}=q,
 $$
 and (ii) $q$ is minimized when $$z=-\frac{1}{2}\left(E_1+E_{d-1}\right)$$\\
-B. This part is to use the method in A to solve the ground state with mean-field approximation. 
+B. This part is to use the method in A to solve the ground state with mean-field approximation. \\
+\indent Consider 2 identical interacting atoms in an external magnetic field and they both have spin-orbital coupling. The Hamiltonian is 
+$$
+H=H_1+H_2+H_{12}
+$$
+where $H_1$ and $H_2$ are the Hamiltonian of two isolated atoms and $H_{12}$ describes the interaction between the atoms. This will be calculated with mean field approximation later. \\
+\indent (1) First we will write down $H_{1}$ and $H_2$. Assume these two atoms are same and both have quantum numbers $S=1/2$ and $L=1$. The Hamiltonian is a sum of spin-orbital coupling and also coupling to the external magnetic field $\bm{B}$.
+$$H_1=\lambda \bm{S}\cdot\bm{L}+\mu_{\mathrm{B}}(2\bm{S}+\bm{L})\cdot\bm{B}
+$$
+To write down the matrix form, we need work in the proper space. The space is a product of spin space and orbital space, which means the dimension should be the product of dimension of the spin space and the dimension of the orbital space $(2S+1)(2L+1)=6$. Because when any spin operator is projected into the orbital space, it should be identity, we can write down the operators in this way:
+$$S_z=\begin{bmatrix}
+1/2 & 0\\
+0 & -1/2
+\end{bmatrix} \otimes \begin{bmatrix}
+1 &0 &0\\
+0 & 1 & 0 \\
+0 &0 &1
+\end{bmatrix}=\begin{bmatrix}
+1/2 &0 &0 &0 &0 &0\\
+0 &1/2 &0 &0 &0 &0\\
+0 &0 &1/2 &0 &0 &0\\
+0 &0 &0 &-1/2 &0 &0\\
+0 &0 &0 &0 &-1/2 &0\\
+0 &0 &0 &0 &0 &-1/2
+\end{bmatrix}
+$$
+$$L_z=\begin{bmatrix}
+1 & 0\\
+0 & 1
+\end{bmatrix} \otimes \begin{bmatrix}
+1 &0 &0\\
+0 & 0 & 0 \\
+0 &0 &-1
+\end{bmatrix}=\begin{bmatrix}
+1 &0 &0 &0 &0 &0\\
+0 &0 &0 &0 &0 &0\\
+0 &0 &-1 &0 &0 &0\\
+0 &0 &0 &1 &0 &0\\
+0 &0 &0 &0 &0 &0\\
+0 &0 &0 &0 &0 &-1
+\end{bmatrix}
+$$
+now you can write down the single atom Hamiltonian
+$$
+H_1=\lambda \bm{S}\cdot\bm{L}+\mu_{\mathrm{B}}(2\bm{S}+\bm{L})\cdot\bm{B}=\lambda(S_xL_x+S_yL_y+S_zL_z)+\mu_{\mathrm{B}}(B_x(2S_x+L_x)+B_y(2S_y+L_y)+B_z(2S_z+L_z))
+$$
+and look at how the eigenvalues change as a function of $\lambda$ and $\bm{B}$.\\
+\indent (2) Assume the interaction between two atoms is $$
+H_{12}=J \bm{S}_1 \cdot \bm{S}_2
+$$
+To solve the ground state, we should work in a larger space of dimension $6\times 6=36$, but this matrix is assumed to be too large and we will apply mean-field approximation.
+In mean field approximation, we will ignore the entanglement between the atoms, which means the ground state can be written as a product of two atoms$$
+\left|\psi_{1,2}\right>=\left|\psi_1\right>\otimes\left|\psi_2\right>
+$$ and total Hamiltonian on atom 1 is 
+$$h_1=H_1+J\bm{S}\cdot\left<\psi_2|\bm{S}|\psi_2\right>=J(S_x\left<\psi_2|S_x|\psi_2\right>+S_y\left<\psi_2|S_y|\psi_2\right>+S_z\left<\psi_2|S_z|\psi_2\right>)
+$$
+and also the total Hamiltonian on atom 2 is
+$$h_2=H_2+J\bm{S}\cdot\left<\psi_1|\bm{S}|\psi_1\right>=J(S_x\left<\psi_1|S_x|\psi_1\right>+S_y\left<\psi_1|S_y|\psi_1\right>+S_z\left<\psi_1|S_z|\psi_1\right>)
+$$
+Notice that $h_1$ is a function of $\left|\psi_2\right>$. Now you can use the method in part A on two atoms to solve the groud state. You can plot the magnetic moment as a function of $\lambda$, $J$ and $\bm{B}$.\\
+\indent (3) Now let apply this aprroximation to a magnetic system.
 \end{document}
