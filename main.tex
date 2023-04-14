@@ -51,7 +51,8 @@ $$\left|\psi_{n+1}\right>=\frac{\left|\phi_{n+1}\right>}{\left<\phi_{n+1}|\phi_{
 Draw (i)$\left|\left<a_0|\psi_n\right>\right|^2$ as a function of $n$. and 
 (ii) $\left<\psi_n|H|\psi_n\right>$ as a function of n. Also try with differenct positive values of $\varepsilon$ and see how the value will change the speed of converging.\\
 \indent (4) repeat (2) and (3) with $\left|\psi_0\right>=\left|S_z=0\right>$. (Some weird thing could happen, depending on the computer.)\\ 
-\indent (5) For a general Hamiltonian
+\indent (5) repeat (4) but in each step, add a random small distortion to the wavefunction. Observe how the algorithm converges. Remember to Normalize the wavefunction after distortion.\\ 
+\indent (6) For a general Hamiltonian
 $$ H = \sum_{i=0}^{d-1} E_{i} \left|a_i\right>\left<a_i\right|
 $$
 with the eigenenergies $E_0<E_1\leq E_2 \leq \ldots\leq E_{d-1}$, prove that $\forall \left|\psi_0\right> $ that $\left<a_0|\psi_0\right>\neq 0$, $\exists \varepsilon>0$, the series $\{\left| \psi_n\right>\}$ generatred in (2) satisfies $$
@@ -59,7 +60,7 @@ with the eigenenergies $E_0<E_1\leq E_2 \leq \ldots\leq E_{d-1}$, prove that $\f
 $$
 \indent Hint: Consider an $\varepsilon$ that $0<\varepsilon<1/|E_{d-1}|$ and find a $q$ that $0<q<1$ and $\left(1-\sqrt{\left|\left<a_0|\psi_{n+1}\right>\right|^2}\right)<q\left(1-\sqrt{\left|\left<a_0|\psi_{n}\right>\right|^2}\right)$.\\
 \indent Comment: From this part, to make sure the algorithm works, a small fluctuaction should be added in each step to get a nonzero $\left<a_0|\psi_0\right>$.\\
-\indent (6) Now we know that this algorithrm always converges. Let's figure out how to make it fast. Consider a Hamiltonian in (5) with conditions $d>2$ and $E_0<E_1<E_{d-1}$. Define:$$\left|\phi_{n+1}\right>=\left(-H+z\right) \left|\psi_n\right>$$
+\indent (7) Now we know that this algorithrm always converges. Let's figure out how to make it fast. Consider a Hamiltonian in (5) with conditions $d>2$ and $E_0<E_1<E_{d-1}$. Define:$$\left|\phi_{n+1}\right>=\left(-H+z\right) \left|\psi_n\right>$$
 $$\left|\psi_{n+1}\right>=\frac{\left|\phi_{n+1}\right>}{\left<\phi_{n+1}|\phi_{n+1}\right>}.$$
 where $z$ is a real number and define $x_n=1-\left|\left<a_0|\psi_n\right>\right|$
 . Prove that (i) $\forall z >\frac{-E_0-E_{d-1}}{2}$, $\exists q$, $0< q <1$ and $$
@@ -126,5 +127,16 @@ and also the total Hamiltonian on atom 2 is
 $$h_2=H_2+J\bm{S}\cdot\left<\psi_1|\bm{S}|\psi_1\right>=J(S_x\left<\psi_1|S_x|\psi_1\right>+S_y\left<\psi_1|S_y|\psi_1\right>+S_z\left<\psi_1|S_z|\psi_1\right>)
 $$
 Notice that $h_1$ is a function of $\left|\psi_2\right>$. Now you can use the method in part A on two atoms to solve the groud state. You can plot the magnetic moment as a function of $\lambda$, $J$ and $\bm{B}$.\\
-\indent (3) Now let apply this aprroximation to a magnetic system. Consider a 2D square lattice.
+\indent (3) Now let apply this aprroximation to a magnetic system. Consider a 2D triangular lattice with the atoms in part (1). Assume we have $n$ atoms, then the dimenshion of the space will be $((2S+1)(2L+1))^n$. Even for a small number n, this number explodes very fast. To be able to solve this, we will ignore the entanglement between the atoms. This means the total wavefunction $\left|\Psi\right>$ will be product of individual wave functions $\left|\psi_{\bm{r}}\right>$, where $\bm{r}$ is the position of the atom $\bm{r}=a_1 \bm{a}+a_2 \bm{b}$ and $\bm{a}$, $\bm{b}$ are the lattice vectors with $\bm{a}\cdot \bm{b}=0$:
+$$\left|\Psi\right>=\prod_{\bm{r}} \left|\psi_{\bm{r}}\right>.
+$$
+The last approximation we are going to apply is that all the $ \left|\psi_{\bm{r}}\right>$ equal to each other so we assign$$
+\left|\psi_{\bm{r}}\right>=\left|\psi\right>, \forall {\bm{r}}
+$$ One must be carefull with this approximation. This only works at a ferromagnetic phase. In other phases, there will be more atoms in per magnetic unit cell. We will show how to do this later. \\
+Now lets assume the interactions between neighours have two types. Along $\bm{a}$ direction, there exist a coupling $-J_a \bm{S_{\bm{r}}}\cdot \bm{S}_{\bm{r}+\bm{a}}$ and long $\bm{b}$ direction, there is $-J_b \bm{S_{\bm{r}}}\cdot \bm{S}_{\bm{r}+\bm{b}}$. To keep this system ferromagnetic, we will assume that $J_a$ and $J_b$ are all positive. Since now we already assumed the wavefunctions for all atoms, we will use the method in part A to solve the wave function. The actual Hamiltonian we use consists three parts, the spin orbital coupling, coupling to external magnetic field, and the mean field from neighbours. The sum will be $$
+h=\lambda \bm{S}\cdot\bm{L}+\mu_{\mathrm{B}}(2\bm{S}+\bm{L})\cdot\bm{B}-2J_a\bm{S}\cdot\left<\psi\right|\bm{S}\left|\psi\right>-2J_b\bm{S}\cdot\left<\psi\right|\bm{S}\left|\psi\right>
+$$ 
+There is a coefficiten 2 because each atom has 2 neighbours in both directions. Notice that this effective Hamiltonian is a function of the wavefunction, so normal diagnolization method doesn't work hear. Use the algarithm in part (A) to solve the ground state of this system. Observe how the ground state changes with $\lambda$, $J_a$, $J_b$, and  $\bm{B}$.\\
+C. This part is about flavour model. We will solve the dispersion of magnons and other extra modes. Lets start from a easy 1D ferromagnetic chain problem.\\
+\indent (1). Let consider the same atom with$L=1$ and $S=1/2$ in a chain
 \end{document}
