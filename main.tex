@@ -138,5 +138,19 @@ h=\lambda \bm{S}\cdot\bm{L}+\mu_{\mathrm{B}}(2\bm{S}+\bm{L})\cdot\bm{B}-2J_a\bm{
 $$ 
 There is a coefficiten 2 because each atom has 2 neighbours in both directions. Notice that this effective Hamiltonian is a function of the wavefunction, so normal diagnolization method doesn't work hear. Use the algarithm in part (A) to solve the ground state of this system. Observe how the ground state changes with $\lambda$, $J_a$, $J_b$, and  $\bm{B}$.\\
 C. This part is about flavour model. We will solve the dispersion of magnons and other extra modes. Lets start from a easy 1D ferromagnetic chain problem.\\
-\indent (1). Let consider the same atom with$L=1$ and $S=1/2$ in a chain
+\indent (1). Let consider the same atom with $L=1$ and $S=1/2$ in a chain with ferromagnetic coupling between nearest neighbours. This gives a terrifying Hamiltonian: 
+$$
+H=\sum _ {i} \lambda \bm{S}_i \cdot \bm{L}_i+ \mu_{\mathrm{B}} (2\bm{S}_i+\bm{L}_i)\cdot \bm{B}-J \bm{S}_i\cdot \bm{S}_{i+1}
+$$
+where $\bm{S}_i$ is the spin operator of the $i$-th atom on the chain. $\lambda$ is an arbitraty real number and $J$ is positive.
+First we write down the effective Hamiltionina on each atom with a wave function $\left|\psi\right>$
+
+$$
+\begin{aligned}
+    h &=\lambda \bm{S} \cdot \bm{L}+\mu_{\mathrm{B}} (2\bm{S}+\bm{L})\cdot \bm{B}-2J \bm{S}\cdot \left<\psi\right|\bm{S}\left|\psi \right>\\
+    &=\lambda \left(S_xL_x+S_y L_y+S_z L_z\right)+\mu_{\mathrm{B}}\left( B_x(2S_x+L_x)+B_y(2S_y+L_y)+B_z(2S_z+L_z) \right)\\&\ \ \ \ \ \ \ \ \ -JS_x\left<\psi\right|S_x\left|\psi\right>-JS_y\left<\psi\right|S_y\left|\psi\right>-JS_z\left<\psi\right|S_z\left|\psi\right>
+\end{aligned}
+$$
+where all the matrices are $(2S+1)(2L+1)=6$ dimensional matrices. Now lets assign numbers $\lambda=\SI{1}{\milli\electronvolt}$  and $J=\SI{1}{\milli\electronvolt}$ wich constant $\mu_{\mathrm{B}}=\SI{0.05788}{\milli\electronvolt/\tesla}$, you should be able to get the ground state. Try start from a external field  $\bm{B}=\SI{40}{\tesla}\ \hat{z}$ and decrease the field to 0 slowly. Calculate the magnetic dipole per atom $m_z=-\left<\psi\right|2S_z+L_z\left|\psi\right>$ and plot the magnetic dipole as a function of field. You should see the saturated first at a strong field, which gives $m_z=2$. As field decreases, you should see $m_z$ starts decreasing at a certain field and it doen't go to 0 when the field aprroches 0 and it jumps when the field changes sign. This makes sense because this is a ferromagnetic system and there is only single domain.\\
+\indent(2) Now we will look at a antiferromagnetic system.
 \end{document}
