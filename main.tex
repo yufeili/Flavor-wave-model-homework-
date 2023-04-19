@@ -1,4 +1,5 @@
 \documentclass[letter]{article}
+%%\documentclass[a4paper]{article}
 \usepackage{sectsty}
 \sectionfont{\fontsize{8}{2}\selectfont}
 \font\myfont=cmr12 at 12pt
@@ -41,6 +42,10 @@
 $$ H= S_z.
 $$
 Write down the matrix form for $H$, the eigenstates of $H$ and their energies. We will write down the ground state to be $\left|a_0\right>$\\
+\indent Comment: In this note, we use the commutation relation for spin operators: $[S_x,S_y]=2\ii S_z$ in stead of $[S_x,S_y]=\ii \hbar S_z$. Which means for spin $1/2$, $S_z=\begin{bmatrix}
+    1/2 & 0 \\
+    0 &  -1/2
+    \end{bmatrix}$.\\
 \indent (2) Assume a initial state to be $\left|\psi_0\right>=\frac{1}{\sqrt{3}}(\left|S_z=-1\right>+\left|S_z=0\right>+\left|S_z=1\right>)$. Let $\varepsilon=10^{-2}$. Calculate 
 $$\left|\phi_1\right>=\left(1-\varepsilon H \right)\left|\psi_0\right>$$
 $$\left|\psi_1\right>=\frac{\left|\phi_1\right>}{\left<\phi_1|\phi_1\right>}$$
@@ -127,18 +132,17 @@ and also the total Hamiltonian on atom 2 is
 $$h_2=H_2+J\bm{S}\cdot\left<\psi_1|\bm{S}|\psi_1\right>=J(S_x\left<\psi_1|S_x|\psi_1\right>+S_y\left<\psi_1|S_y|\psi_1\right>+S_z\left<\psi_1|S_z|\psi_1\right>)
 $$
 Notice that $h_1$ is a function of $\left|\psi_2\right>$. Now you can use the method in part A on two atoms to solve the groud state. You can plot the magnetic moment as a function of $\lambda$, $J$ and $\bm{B}$.\\
-\indent (3) Now let apply this aprroximation to a magnetic system. Consider a 2D triangular lattice with the atoms in part (1). Assume we have $n$ atoms, then the dimenshion of the space will be $((2S+1)(2L+1))^n$. Even for a small number n, this number explodes very fast. To be able to solve this, we will ignore the entanglement between the atoms. This means the total wavefunction $\left|\Psi\right>$ will be product of individual wave functions $\left|\psi_{\bm{r}}\right>$, where $\bm{r}$ is the position of the atom $\bm{r}=a_1 \bm{a}+a_2 \bm{b}$ and $\bm{a}$, $\bm{b}$ are the lattice vectors with $\bm{a}\cdot \bm{b}=0$:
-$$\left|\Psi\right>=\prod_{\bm{r}} \left|\psi_{\bm{r}}\right>.
-$$
-The last approximation we are going to apply is that all the $ \left|\psi_{\bm{r}}\right>$ equal to each other so we assign$$
-\left|\psi_{\bm{r}}\right>=\left|\psi\right>, \forall {\bm{r}}
-$$ One must be carefull with this approximation. This only works at a ferromagnetic phase. In other phases, there will be more atoms in per magnetic unit cell. We will show how to do this later. \\
-Now lets assume the interactions between neighours have two types. Along $\bm{a}$ direction, there exist a coupling $-J_a \bm{S_{\bm{r}}}\cdot \bm{S}_{\bm{r}+\bm{a}}$ and long $\bm{b}$ direction, there is $-J_b \bm{S_{\bm{r}}}\cdot \bm{S}_{\bm{r}+\bm{b}}$. To keep this system ferromagnetic, we will assume that $J_a$ and $J_b$ are all positive. Since now we already assumed the wavefunctions for all atoms, we will use the method in part A to solve the wave function. The actual Hamiltonian we use consists three parts, the spin orbital coupling, coupling to external magnetic field, and the mean field from neighbours. The sum will be $$
-h=\lambda \bm{S}\cdot\bm{L}+\mu_{\mathrm{B}}(2\bm{S}+\bm{L})\cdot\bm{B}-2J_a\bm{S}\cdot\left<\psi\right|\bm{S}\left|\psi\right>-2J_b\bm{S}\cdot\left<\psi\right|\bm{S}\left|\psi\right>
-$$ 
-There is a coefficiten 2 because each atom has 2 neighbours in both directions. Notice that this effective Hamiltonian is a function of the wavefunction, so normal diagnolization method doesn't work hear. Use the algarithm in part (A) to solve the ground state of this system. Observe how the ground state changes with $\lambda$, $J_a$, $J_b$, and  $\bm{B}$.\\
-C. This part is about flavour model. We will solve the dispersion of magnons and other extra modes. Lets start from a easy 1D ferromagnetic chain problem.\\
-\indent (1). Let consider the same atom with $L=1$ and $S=1/2$ in a chain with ferromagnetic coupling between nearest neighbours. This gives a terrifying Hamiltonian: 
+%%\indent (3) Now let apply this aprroximation to a magnetic system. Consider a 2D triangular lattice with the atoms in part (1). Assume we have $n$ atoms, then the dimenshion of the space will be $((2S+1)(2L+1))^n$. Even for a small number n, this number explodes very fast. To be able to solve this, we will ignore the entanglement between the atoms. This means the total wavefunction $\left|\Psi\right>$ will be product of individual wave functions $\left|\psi_{\bm{r}}\right>$, where $\bm{r}$ is the position of the atom $\bm{r}=a_1 \bm{a}+a_2 \bm{b}$ and $\bm{a}$, $\bm{b}$ are the lattice vectors with $\bm{a}\cdot \bm{b}=0$:
+%%$$\left|\Psi\right>=\prod_{\bm{r}} \left|\psi_{\bm{r}}\right>.
+%%$$
+%%he last approximation we are going to apply is that all the $ \left|\psi_{\bm{r}}\right>$ equal to each other so we assign$$
+%%\left|\psi_{\bm{r}}\right>=\left|\psi\right>, \forall {\bm{r}}
+%%$$ One must be carefull with this approximation. This only works at a ferromagnetic phase. In other phases, there will be more atoms in per magnetic unit cell. We will show how to do this later. \\
+%%Now lets assume the interactions between neighours have two types. Along $\bm{a}$ direction, there exist a coupling $-J_a \bm{S_{\bm{r}}}\cdot \bm{S}_{\bm{r}+\bm{a}}$ and long $\bm{b}$ direction, there is $-J_b \bm{S_{\bm{r}}}\cdot \bm{S}_{\bm{r}+\bm{b}}$. To keep this system ferromagnetic, we will assume that $J_a$ and $J_b$ are all positive. Since now we already assumed the wavefunctions for all atoms, we will use the method in part A to solve the wave function. The actual Hamiltonian we use consists three parts, the spin orbital coupling, coupling to external magnetic field, and the mean field from neighbours. The sum will be $$
+%%h=\lambda \bm{S}\cdot\bm{L}+\mu_{\mathrm{B}}(2\bm{S}+\bm{L})\cdot\bm{B}-2J_a\bm{S}\cdot\left<\psi\right|\bm{S}\left|\psi\right>-2J_b\bm{S}\cdot\left<\psi\right|\bm{S}\left|\psi\right>
+%%$$ 
+%%There is a coefficiten 2 because each atom has 2 neighbours in both directions. Notice that this effective Hamiltonian is a function of the wavefunction, so normal diagnolization method doesn't work hear. Use the algarithm in part (A) to solve the ground state of this system. Observe how the ground state changes with $\lambda$, $J_a$, $J_b$, and  $\bm{B}$.\\
+\indent (4) Let consider the same atom with $L=1$ and $S=1/2$ in a chain with ferromagnetic coupling between nearest neighbours. This gives a terrifying Hamiltonian: 
 $$
 H=\sum _ {i} \lambda \bm{S}_i \cdot \bm{L}_i+ \mu_{\mathrm{B}} (2\bm{S}_i+\bm{L}_i)\cdot \bm{B}-J \bm{S}_i\cdot \bm{S}_{i+1}
 $$
@@ -148,9 +152,42 @@ First we write down the effective Hamiltionina on each atom with a wave function
 $$
 \begin{aligned}
     h &=\lambda \bm{S} \cdot \bm{L}+\mu_{\mathrm{B}} (2\bm{S}+\bm{L})\cdot \bm{B}-2J \bm{S}\cdot \left<\psi\right|\bm{S}\left|\psi \right>\\
-    &=\lambda \left(S_xL_x+S_y L_y+S_z L_z\right)+\mu_{\mathrm{B}}\left( B_x(2S_x+L_x)+B_y(2S_y+L_y)+B_z(2S_z+L_z) \right)\\&\ \ \ \ \ \ \ \ \ -JS_x\left<\psi\right|S_x\left|\psi\right>-JS_y\left<\psi\right|S_y\left|\psi\right>-JS_z\left<\psi\right|S_z\left|\psi\right>
+    &=\lambda \left(S_xL_x+S_y L_y+S_z L_z\right)+\mu_{\mathrm{B}}\left( B_x(2S_x+L_x)+B_y(2S_y+L_y)+B_z(2S_z+L_z) \right)\\&\ \ \ \ \ \ \ \ \ -2JS_x\left<\psi\right|S_x\left|\psi\right>-2JS_y\left<\psi\right|S_y\left|\psi\right>-2JS_z\left<\psi\right|S_z\left|\psi\right>
 \end{aligned}
 $$
 where all the matrices are $(2S+1)(2L+1)=6$ dimensional matrices. Now lets assign numbers $\lambda=\SI{1}{\milli\electronvolt}$  and $J=\SI{1}{\milli\electronvolt}$ wich constant $\mu_{\mathrm{B}}=\SI{0.05788}{\milli\electronvolt/\tesla}$, you should be able to get the ground state. Try start from a external field  $\bm{B}=\SI{40}{\tesla}\ \hat{z}$ and decrease the field to 0 slowly. Calculate the magnetic dipole per atom $m_z=-\left<\psi\right|2S_z+L_z\left|\psi\right>$ and plot the magnetic dipole as a function of field. You should see the saturated first at a strong field, which gives $m_z=2$. As field decreases, you should see $m_z$ starts decreasing at a certain field and it doen't go to 0 when the field aprroches 0 and it jumps when the field changes sign. This makes sense because this is a ferromagnetic system and there is only single domain.\\
-\indent(2) Now we will look at a antiferromagnetic system.
+\indent(5) Now we will look at a antiferromagnetic system. The difference is that there are 2 atoms per unit cell. We will label the atoms as $(i,1)$ and $(i,2)$. With a positive number $J$, the Hamiltonian is $$
+H=\sum_i\lambda\left(\bm{S}_{i,1}\cdot\bm{L}_{i,1}+\bm{S}_{i,2}\cdot\bm{L}_{i,2}\right)+\mu_{\mathrm{B}} (2\bm{S}_{i,1}+\bm{L}_{i,1}+2\bm{S}_{i,2}+\bm{L}_{i,2})\cdot \bm{B}+\frac{J}{2  }\left(\bm{S}_{i-1,2}\cdot\bm{S}_{i,1}+2\bm{S}_{i,1}\cdot\bm{S}_{i,2}+\bm{S}_{i,2}\cdot\bm{S}_{i+1,1}\right)
+$$ We will apply the assumption: $\left|\psi_{i,1}\right>=\left|\psi_1 \right>$ and $\left|\psi_{i,2}\right>=\left|\psi_2 \right>$ and now the mean field on atom 1 will be:
+$$\begin{aligned}
+    h_1 &=\lambda \bm{S} \cdot \bm{L}+\mu_{\mathrm{B}} (2\bm{S}+\bm{L})\cdot \bm{B}+2J \bm{S}\cdot \left<\psi_2\right|\bm{S}\left|\psi_2 \right>\\
+    &=\lambda \left(S_xL_x+S_y L_y+S_z L_z\right)+\mu_{\mathrm{B}}\left( B_x(2S_x+L_x)+B_y(2S_y+L_y)+B_z(2S_z+L_z) \right)\\&\ \ \ \ \ \ \ \ \ +2JS_x\left<\psi_2\right|S_x\left|\psi_2\right>+2JS_y\left<\psi_2\right|S_y\left|\psi_2\right>+2JS_z\left<\psi_2\right|S_z\left|\psi_2\right>
+\end{aligned}
+$$
+and switch 1 and 2 to get the mean field for atom 2:
+$$\begin{aligned}   
+   h_2 &=\lambda \left(S_xL_x+S_y L_y+S_z L_z\right)+\mu_{\mathrm{B}}\left( B_x(2S_x+L_x)+B_y(2S_y+L_y)+B_z(2S_z+L_z) \right)\\&\ \ \ \ \ \ \ \ \ +2JS_x\left<\psi_1\right|S_x\left|\psi_1\right>+2JS_y\left<\psi_1\right|S_y\left|\psi_1\right>+2JS_z\left<\psi_1\right|S_z\left|\psi_1\right>
+\end{aligned}
+$$
+Now start a strong magnetic field and calculate the magnetic dipole as a function of field. Notice that the algotighm fails at a weak field.
+C. This part is about flavour model. We will solve the dispersion of magnons and other extra modes. Lets start from theory calculations and then apply the algorithm on ferromagnetic chain, antiferromagnetic chain, 2D ferromagnetic chain, and some actual materials.\\
+\indent (1). In this part we will derive for an arbitrary system. We assume the system has some unit cells which can be labeled as the position of each cell $\{\bm{r}\}$, each unit cell has $n$ same atoms, which all have $D$ dimensions. The total hamiltonian should be written as $$
+H=\sum_{\bm{r},i}H_{\bm{r},i}+H_{\mathrm{interaction}}
+$$ and constained by symmetry, all the $H_{\bm{r},i}$ ahouls be same for all $\bm{r}$. The interaction part will be a sum of a list, each list of the term will have this form: $J_{(\bm{r}_1,i_1),(\bm{r}_2,i_2)\cdots (\bm{r}_s,i_s)} \bm{X}^1_{\bm{r}_1,i_1} \bm{X}^2_{\bm{r}_2,i_2} \cdots\bm{X}^s_{\bm{r}_s,i_s}$. To illatrate this, lets look at some examples:\\
+\indent (a). 1D ferromagnetic chain with Heisenberg interaction between nearest neighbours, all the atoms only have spin degree of freedom. The Hamiltonian is $$
+H=\sum_{i}g\mu_{\mathrm{B}}\bm{B}\cdot\bm{S_i}-J\bm{S}_{i}\cdot\bm{S}_{i+1}
+$$
+$g$ is the Lande  g-factor. $J$ is positive. The Hamiltonian can be rewitten as $$
+H=\sum_{i}g\mu_{\mathrm{B}}(B^x S^x +B^y S^y+B^z S^z)-J(S_{i}^x S_{i+1}^x+S_{i}^y S_{i+1}^y+S_{i}^z S_{i+1}^z)
+$$
+Now there are three terms in the interaction.\\
+\indent (b). 1D antiferromagnetic chain with Heisenberg interaction between nearest neighbouts, all the atoms oonly have spin degree of freedom. The Hamiltonian is $$
+H=\sum_i g\mu_{\mathrm{B}}\bm{B}\cdot(\bm{S}_{i,1}+\bm{S}_{i,2})
+$$
+\\
+ We will assume the ground state is already solved and the $i$-th atom in all unit cells have the same wave function:$$
+\left|\psi_{\bm{r},i}\right>=\left|\psi_i\right>
+$$
+and 
+
 \end{document}
