@@ -1,7 +1,7 @@
 \documentclass[letter]{article}
 %%\documentclass[a4paper]{article}
-\usepackage{sectsty}
-\sectionfont{\fontsize{8}{2}\selectfont}
+%\usepackage{sectsty}
+%\sectionfont{\fontsize{8}{2}\selectfont}
 \font\myfont=cmr12 at 12pt
 \title{{\myfont Flavor wave model homework problems}}
 \usepackage{natbib}
@@ -37,7 +37,7 @@
 %\makeatother
 \begin{document}
 \maketitle
-\indent A. In this part, we will develop a method solving the ground state without diagonalizing the Hamiltonian.\\
+{\large{A}}. In this part, we will develop a method solving the ground state without diagonalizing the Hamiltonian.\\
 \indent (1)  Assume a particle can be discribed by spin only, with $S=1$. and the Hamiltonian is 
 $$ H= S_z.
 $$
@@ -72,7 +72,7 @@ where $z$ is a real number and define $x_n=1-\left|\left<a_0|\psi_n\right>\right
 \lim _{n\rightarrow \infty} \frac{x_{n+1}}{x_n}=q,
 $$
 and (ii) $q$ is minimized when $$z=-\frac{1}{2}\left(E_1+E_{d-1}\right)$$\\
-B. This part is to use the method in A to solve the ground state with mean-field approximation. \\
+{\large{B}}. This part is to use the method in A to solve the ground state with mean-field approximation. \\
 \indent Consider 2 identical interacting atoms in an external magnetic field and they both have spin-orbital coupling. The Hamiltonian is 
 $$
 H=H_1+H_2+H_{12}
@@ -169,25 +169,52 @@ $$\begin{aligned}
    h_2 &=\lambda \left(S_xL_x+S_y L_y+S_z L_z\right)+\mu_{\mathrm{B}}\left( B_x(2S_x+L_x)+B_y(2S_y+L_y)+B_z(2S_z+L_z) \right)\\&\ \ \ \ \ \ \ \ \ +2JS_x\left<\psi_1\right|S_x\left|\psi_1\right>+2JS_y\left<\psi_1\right|S_y\left|\psi_1\right>+2JS_z\left<\psi_1\right|S_z\left|\psi_1\right>
 \end{aligned}
 $$
-Now start a strong magnetic field and calculate the magnetic dipole as a function of field. Notice that the algotighm fails at a weak field.
-C. This part is about flavour model. We will solve the dispersion of magnons and other extra modes. Lets start from theory calculations and then apply the algorithm on ferromagnetic chain, antiferromagnetic chain, 2D ferromagnetic chain, and some actual materials.\\
-\indent (1). In this part we will derive for an arbitrary system. We assume the system has some unit cells which can be labeled as the position of each cell $\{\bm{r}\}$, each unit cell has $n$ same atoms, which all have $D$ dimensions. The total hamiltonian should be written as $$
-H=\sum_{\bm{r},i}H_{\bm{r},i}+H_{\mathrm{interaction}}
-$$ and constained by symmetry, all the $H_{\bm{r},i}$ ahouls be same for all $\bm{r}$. The interaction part will be a sum of a list, each list of the term will have this form: $J_{(\bm{r}_1,i_1),(\bm{r}_2,i_2)\cdots (\bm{r}_s,i_s)} \bm{X}^1_{\bm{r}_1,i_1} \bm{X}^2_{\bm{r}_2,i_2} \cdots\bm{X}^s_{\bm{r}_s,i_s}$. To illatrate this, lets look at some examples:\\
+Now start a strong magnetic field and calculate the magnetic dipole as a function of field. Notice that the algotighm fails at a weak field.\\
+{\large{C}}. This part is about flavour model. We will solve the dispersion of magnons and other extra modes. Lets start from theory calculations and then apply the algorithm on ferromagnetic chain, antiferromagnetic chain, 2D ferromagnetic chain, and some actual materials. There are three practice examples and we will be using them for the whole C part.  \\
 \indent (a). 1D ferromagnetic chain with Heisenberg interaction between nearest neighbours, all the atoms only have spin degree of freedom. The Hamiltonian is $$
 H=\sum_{i}g\mu_{\mathrm{B}}\bm{B}\cdot\bm{S_i}-J\bm{S}_{i}\cdot\bm{S}_{i+1}
 $$
 $g$ is the Lande  g-factor. $J$ is positive. The Hamiltonian can be rewitten as $$
 H=\sum_{i}g\mu_{\mathrm{B}}(B^x S^x +B^y S^y+B^z S^z)-J(S_{i}^x S_{i+1}^x+S_{i}^y S_{i+1}^y+S_{i}^z S_{i+1}^z)
-$$
-Now there are three terms in the interaction.\\
+$$\\
 \indent (b). 1D antiferromagnetic chain with Heisenberg interaction between nearest neighbouts, all the atoms oonly have spin degree of freedom. The Hamiltonian is $$
-H=\sum_i g\mu_{\mathrm{B}}\bm{B}\cdot(\bm{S}_{i,1}+\bm{S}_{i,2})
+\begin{aligned}
+    H&=\sum_i g\mu _{\mathrm{B}}\bm{B}\cdot(\bm{S}_{i,1}+\bm{S}_{i,2})+J(\bm{S}_{i,1}\cdot\bm{S}_{i,2}+\bm{S}_{i,1}\cdot\bm{S}_{i-1,2} )\\
+   & =\sum_i g\mu _{\mathrm{B}}\bm{B}\cdot(\bm{S}_{i,1}+\bm{S}_{i,2})+J(S_{i,1}^x S_{i,2}^x+S_{i,1}^y S_{i,2}^y+S_{i,1}^z S_{i,2}^z+S_{i,1}^x S_{i-1,2}^x+S_{i,1}^y S_{i-1,2}^y+S_{i,1}^z S_{i-1,2}^z)
+\end{aligned}
+$$\\
+\indent (c). 2D triangular ferromagnetic system with a ring-exchange and a easy plane. Since it is a 2D system, we need two integers to label unit cells. $S$ needs to be larger than 1/2. Let's assume $S=1$, The Hamiltonian is $$
+H=\sum_{i,j}g\mu _{\mathrm{B}} \bm{B}\cdot \bm{S_{i,j}}-\delta (S_i^z)^2-J_1\bm{S}_{i,j}\cdot\bm{S}_{i+1,j}-J_2\bm{S}_{i,j}\cdot\bm{S}_{i,j+1}-rS_{i,j}^+S_{i+1,j}^+S_{i,j+1}^+S_{i+1,j+1}^+-r^*S_{i,j}^-S_{i+1,j}^-S_{i,j+1}^-S_{i+1,j+1}^-
 $$
+where $r$ is an arbitrary complex number. This is the number that controls the ring exchange.
 \\
- We will assume the ground state is already solved and the $i$-th atom in all unit cells have the same wave function:$$
+\indent (1). In this part we will show the argorithm for an arbitrary systen. We assume the system has some unit cells which can be labeled as the position of each cell $\{\bm{r}\}$, each unit cell has $N$ same atoms, which all have $d$ dimensions. The total hamiltonian should be written as $$
+H=\sum_{\bm{r},i}H_{\bm{r},i}+H_{\mathrm{interaction}}
+$$ and constained by symmetry, all the $H_{\bm{r},i}$ ahouls be same for all $\bm{r}$. The interaction part will be a sum of a list, each list of the term will have this form: $\sum_{\bm{r}}J_{(\bm{0},i_1),(\bm{r}_2,i_2)\cdots (\bm{r}_s,i_s)} \bm{X}^1_{\bm{r},i_1} \bm{X}^2_{\bm{r}+\bm{r}_2,i_2} \cdots\bm{X}^s_{\bm{r}+\bm{r}_s,i_s}$. For the three examples, we have 3, 6, and 8 terms. \\
+ After these examples, we will assume the ground state is already solved and the $i$-th atom in all unit cells have the same wave function:$$
 \left|\psi_{\bm{r},i}\right>=\left|\psi_i\right>
 $$
-and 
+and the local mean field hamiltoain is known and diagonalized:
+$$
+h_i=\sum_{m=0}^{d-1}E_{i,m}\left|\psi_{i,m}\right>\left<\psi_{i,m}\right|
+$$
+where $E_{i,0}<E_{i,1}\leqslant \cdots\leqslant E_{i,d-1}$, and $\left|\psi_{i,0}\right>=\left|\psi_i\right>$
+Now, for any operator $\hat{X}$ acting on the $i$-th atom, we will introduce a expansion, define number: $$
+X_{i,mn}=\left<\psi_{i,m}\right|\hat{X}\left|\psi_{i,n}\right>
+$$
+and the $\hat{X}$ operator acting on $i$-th  atom of the $\bm{r}$ unit cell will have a expansion:
+$$
+\hat{X}\approx X_{i,00}+\sum_{m=1}^{d-1}\left(\hat{b}_{\bm{r},im}^{\dagger}X_{i,m0}+X_{i,0m}\hat{b}_{\bm{r},im}\right)-X_{i,00}\sum_{m=1}^{d-1}\hat{b}^{\dagger}_{\bm{r},im}\hat{b}_{\bm{r},im}
++\sum_{m=1}^{d-1}\sum_{n=1}^{d-1}\hat{b}^{\dagger}_{\bm{r},im}X_{i,mn}\hat{b}_{\bm{r},in}$$
+where the $b$ and $b^{\dagger}$ operators follow the commutation relations:
+$$
+\left[\hat{b}_{\bm{r},im},\hat{b}_{\bm{r}',jn}\right]=\left[\hat{b}^{\dagger}_{\bm{r},im},\hat{b}^{\dagger}_{\bm{r}',jn}\right]=0$$
+$$
+\left[\hat{b}_{\bm{r},im},\hat{b}^{\dagger}_{\bm{r}',jn}\right]=\delta_{\bm{r}\bm{r}'}\delta_{ij}\delta_{mn}$$
+Now for each term in the interaction list, you can apply this expansion and get a bunch of terms. Only the second order terms will be kept. You should get a hamiltonian in this form:
+ $$H=\sum_{\bm{r},\bm{r}'}\mathbf{X}^{\dagger}_{\bm{r}}\mathbf{H}_{\bm{r}\bm{r}'}\mathbf{X}_{\mathrm{r}'}$$
+ where $\mathbf{X}_{\bm{r}}$ is a column verctors of dimension $2N(d-1)$, $$\mathbf{X}_{\bm{r}}=\left(b_{\bm{r},11},b_{\bm{r},12},\cdots,b_{\bm{r},1(d-1)},b_{\bm{r},21},\cdots,b_{\bm{r},N(d-1)},b_{\bm{r},1i}^{\dagger},b_{\bm{r},12}^{\dagger},\cdots,b_{\bm{r},1(d-1)}^{\dagger},b_{\bm{r},21}^{\dagger},\cdots,b_{\bm{r},N(d-1)}^{\dagger}\right)^{\mathsf{T}}$$
+ and $\mathbf{H}_{\bm{r},\bm{r}'}$ is a $2N(d-1)\times 2N(d-1)$ matrix.\\
+ For example, in 
 
 \end{document}
