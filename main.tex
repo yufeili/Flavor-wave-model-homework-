@@ -41,11 +41,14 @@
 \indent (1)  Assume a particle can be discribed by spin only, with $S=1$. and the Hamiltonian is 
 $$ H= S_z.
 $$
-Write down the matrix form for $H$, the eigenstates of $H$ and their energies. We will write down the ground state to be $\left|a_0\right>$\\
-\indent Comment: In this note, we use the commutation relation for spin operators: $[S_x,S_y]=2\ii S_z$ in stead of $[S_x,S_y]=\ii \hbar S_z$. Which means for spin $1/2$, $S_z=\begin{bmatrix}
+Write down the matrix form for $H$, the eigenstates of $H$ and their energies. We will write down the ground state to be $\left|a_0\right>$.\\
+\indent Comment: In this note, we use the commutation relation for spin operators: $[S_x,S_y]=\ii S_z$ in stead of $[S_x,S_y]=\ii \hbar S_z$. Which means for spin $1/2$, $S_z=\begin{bmatrix}
     1/2 & 0 \\
     0 &  -1/2
-    \end{bmatrix}$.\\
+    \end{bmatrix}$ instead of $ S_z=\begin{bmatrix}
+        \hbar/2 & 0 \\
+        0 &  -\hbar/2
+        \end{bmatrix}$. \\
 \indent (2) Assume a initial state to be $\left|\psi_0\right>=\frac{1}{\sqrt{3}}(\left|S_z=-1\right>+\left|S_z=0\right>+\left|S_z=1\right>)$. Let $\varepsilon=10^{-2}$. Calculate 
 $$\left|\phi_1\right>=\left(1-\varepsilon H \right)\left|\psi_0\right>$$
 $$\left|\psi_1\right>=\frac{\left|\phi_1\right>}{\left<\phi_1|\phi_1\right>}$$
@@ -65,10 +68,10 @@ with the eigenenergies $E_0<E_1\leq E_2 \leq \ldots\leq E_{d-1}$, prove that $\f
 $$
 \indent Hint: Consider an $\varepsilon$ that $0<\varepsilon<1/|E_{d-1}|$ and find a $q$ that $0<q<1$ and $\left(1-\sqrt{\left|\left<a_0|\psi_{n+1}\right>\right|^2}\right)<q\left(1-\sqrt{\left|\left<a_0|\psi_{n}\right>\right|^2}\right)$.\\
 \indent Comment: From this part, to make sure the algorithm works, a small fluctuaction should be added in each step to get a nonzero $\left<a_0|\psi_0\right>$.\\
-\indent (7) Now we know that this algorithrm always converges. Let's figure out how to make it fast. Consider a Hamiltonian in (5) with conditions $d>2$ and $E_0<E_1<E_{d-1}$. Define:$$\left|\phi_{n+1}\right>=\left(-H+z\right) \left|\psi_n\right>$$
+\indent (7) Now we know that this algorithrm always converges. Let's figure out how to make it fast. Consider a Hamiltonian in (6) with conditions $d>2$ and $E_0<E_1<E_{d-1}$. Define:$$\left|\phi_{n+1}\right>=\left(-H+z\right) \left|\psi_n\right>$$
 $$\left|\psi_{n+1}\right>=\frac{\left|\phi_{n+1}\right>}{\left<\phi_{n+1}|\phi_{n+1}\right>}.$$
 where $z$ is a real number and define $x_n=1-\left|\left<a_0|\psi_n\right>\right|$
-. Prove that (i) $\forall z >\frac{-E_0-E_{d-1}}{2}$, $\exists q$, $0< q <1$ and $$
+. Prove that, when $x_0<1$, (i) $\forall z >\frac{-E_0-E_{d-1}}{2}$, $\exists q$, $0< q <1$ and $$
 \lim _{n\rightarrow \infty} \frac{x_{n+1}}{x_n}=q,
 $$
 and (ii) $q$ is minimized when $$z=-\frac{1}{2}\left(E_1+E_{d-1}\right)$$\\
@@ -178,7 +181,7 @@ $$
 $g$ is the Lande  g-factor. $J$ is positive. The Hamiltonian can be rewitten as $$
 H=\sum_{i}g\mu_{\mathrm{B}}(B^x S^x +B^y S^y+B^z S^z)-J(S_{i}^x S_{i+1}^x+S_{i}^y S_{i+1}^y+S_{i}^z S_{i+1}^z)
 $$\\
-\indent (b). 1D antiferromagnetic chain with Heisenberg interaction between nearest neighbouts, all the atoms oonly have spin degree of freedom. The Hamiltonian is $$
+\indent (b). 1D antiferromagnetic chain with Heisenberg interaction between nearest neighbouts, all the atoms only have spin degree of freedom. The Hamiltonian is $$
 \begin{aligned}
     H&=\sum_i g\mu _{\mathrm{B}}\bm{B}\cdot(\bm{S}_{i,1}+\bm{S}_{i,2})+J(\bm{S}_{i,1}\cdot\bm{S}_{i,2}+\bm{S}_{i,1}\cdot\bm{S}_{i-1,2} )\\
    & =\sum_i g\mu _{\mathrm{B}}\bm{B}\cdot(\bm{S}_{i,1}+\bm{S}_{i,2})+J(S_{i,1}^x S_{i,2}^x+S_{i,1}^y S_{i,2}^y+S_{i,1}^z S_{i,2}^z+S_{i,1}^x S_{i-1,2}^x+S_{i,1}^y S_{i-1,2}^y+S_{i,1}^z S_{i-1,2}^z)
@@ -345,8 +348,15 @@ $$ \begin{aligned}
     \hat{b}_{\bm{k}im}=\frac{1}{\sqrt{A}}\sum_{\bm{r}}\hat{b}_{\bm{r}im}\e^{-\ii\bm{k}\cdot\bm{r}} \\
     \hat{b}_{\bm{k}im}^{\dagger}=\frac{1}{\sqrt{A}}\sum_{\bm{r}}\hat{b}_{\bm{r}im}^{\dagger}\e^{\ii\bm{k}\cdot\bm{r}}
     \end{aligned} $$
-where $A$ is the nomalizing factor which gives the commutation relation $\left[\hat{b}_{\bm{k}im},\hat{b}_{\bm{k'}i'm'}^{\dagger}\right]=\delta_{\bm{k}\bm{k}'}\delta_{ii'}\delta_{mm'}$. Now the Hamiltonian can be written in the momentum space and a algorithm propose by Colpa could properly diagnolized this Hamiltonian. In the algorithm, the Hamiltonian is written as $\sum_{\bm{k}}\mathbf{X}^{\dagger}_{\bm{k}}\mathbf{H}_{\bm{k}}\mathbf{X}_{\bm{k}}$ where $\mathbf{X}_{\bm{k}}=\left(b_{\bm{k}11},\cdots,b_{\bm{k}1(d-1)},\cdots,b_{\bm{k}n(d-1))},b_{(-\bm{k})11}^{\dagger},\cdots,b_{(-\bm{k})n(d-1)}^{\dagger}\right)^{\mathsf{T}}$. To just the energies for a certain momentum $k$ the first step is to do Cholesky decomposition $\mathbf{H}=\mathbf{K}^{\dagger}\mathbf{K}$. This requires that $\mathbf{H}$ must be positive definite, otherwise is not decomposivable. If you do not get this, it means that you made a mistake. Plotting the numbers as with differnet $k$ will give you the dispersion. \\
+where $A$ is the nomalizing factor which gives the commutation relation $\left[\hat{b}_{\bm{k}im},\hat{b}_{\bm{k'}i'm'}^{\dagger}\right]=\delta_{\bm{k}\bm{k}'}\delta_{ii'}\delta_{mm'}$. Now the Hamiltonian can be written in the momentum space and a algorithm propose by Colpa could properly diagnolized this Hamiltonian. In the algorithm, the Hamiltonian is written as $\sum_{\bm{k}}\mathbf{X}^{\dagger}_{\bm{k}}\mathbf{H}_{\bm{k}}\mathbf{X}_{\bm{k}}$ where $\mathbf{X}_{\bm{k}}=\left(b_{\bm{k}11},\cdots,b_{\bm{k}1(d-1)},\cdots,b_{\bm{k}n(d-1))},b_{(-\bm{k})11}^{\dagger},\cdots,b_{(-\bm{k})n(d-1)}^{\dagger}\right)^{\mathsf{T}}$. It is very easy to get the energies. Difine a matrix:$$
+\mathbf{g}=\begin{bmatrix}
+    \mathbf{1} & \mathbf{0}  \\
+    \mathbf{0} &  \mathbf{1}
+    \end{bmatrix},
+$$
+where $\mathbf{1}$ means a identity matrix of dimension $n(d-1)$ and $\mathbf{0}$ means a zero matrix. To get the energies, solve the eigenvalues of matrix $\mathbf{H}.\mathbf{g}$. There will be $n(d-1)$ positive numbers and the othere negitive ones on the positive numbers times $-1$. The $n(d-1)$ numbers are the energies of excitations. After this, Plotting the numbers as with different $k$ will give you the dispersion.\\
+There is another way to get the energies and get information of the transformation. The first step is to do Cholesky decomposition $\mathbf{H}=\mathbf{K}^{\dagger}\mathbf{K}$. This requires that $\mathbf{H}$ must be positive definite, otherwise is not decomposivable. If you do not get this, it means that you made a mistake. (needs to be finished) \\
 --------------------------------\\
-In example (a)\\
+In example (a). We will first show the the Fourier transformation for $S_i^x S_{i+1}^x$:\\
 --------------------------------\\
 \end{document}
