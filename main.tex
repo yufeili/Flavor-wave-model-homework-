@@ -171,8 +171,9 @@ $$\begin{aligned}
 $$
 Now start a strong magnetic field and calculate the magnetic dipole as a function of field. Notice that the algotighm fails at a weak field.\\
 {\large{C}}. This part is about flavour model. We will solve the dispersion of magnons and other extra modes. Lets start from theory calculations and then apply the algorithm on ferromagnetic chain, antiferromagnetic chain, 2D ferromagnetic chain, and some actual materials. There are three practice examples and we will be using them for the whole C part.  \\
+--------------------------------\\
 \indent (a). 1D ferromagnetic chain with Heisenberg interaction between nearest neighbours, all the atoms only have spin degree of freedom. The Hamiltonian is $$
-H=\sum_{i}g\mu_{\mathrm{B}}\bm{B}\cdot\bm{S_i}-J\bm{S}_{i}\cdot\bm{S}_{i+1}
+H=\sum_{i}g\mu_{\mathrm{B}}\bm{B}\cdot\bm{S}_i-J\bm{S}_{i}\cdot\bm{S}_{i+1}
 $$
 $g$ is the Lande  g-factor. $J$ is positive. The Hamiltonian can be rewitten as $$
 H=\sum_{i}g\mu_{\mathrm{B}}(B^x S^x +B^y S^y+B^z S^z)-J(S_{i}^x S_{i+1}^x+S_{i}^y S_{i+1}^y+S_{i}^z S_{i+1}^z)
@@ -184,37 +185,160 @@ $$\\
 \end{aligned}
 $$\\
 \indent (c). 2D triangular ferromagnetic system with a ring-exchange and a easy plane. Since it is a 2D system, we need two integers to label unit cells. $S$ needs to be larger than 1/2. Let's assume $S=1$, The Hamiltonian is $$
-H=\sum_{i,j}g\mu _{\mathrm{B}} \bm{B}\cdot \bm{S_{i,j}}-\delta (S_i^z)^2-J_1\bm{S}_{i,j}\cdot\bm{S}_{i+1,j}-J_2\bm{S}_{i,j}\cdot\bm{S}_{i,j+1}-rS_{i,j}^+S_{i+1,j}^+S_{i,j+1}^+S_{i+1,j+1}^+-r^*S_{i,j}^-S_{i+1,j}^-S_{i,j+1}^-S_{i+1,j+1}^-
+H=\sum_{i,j}g\mu _{\mathrm{B}} \bm{B}\cdot \bm{S}_{i,j}-\delta (S_i^z)^2-J_1\bm{S}_{i,j}\cdot\bm{S}_{i+1,j}-J_2\bm{S}_{i,j}\cdot\bm{S}_{i,j+1}-rS_{i,j}^+S_{i+1,j}^+S_{i,j+1}^+S_{i+1,j+1}^+-r^*S_{i,j}^-S_{i+1,j}^-S_{i,j+1}^-S_{i+1,j+1}^-
 $$
-where $r$ is an arbitrary complex number. This is the number that controls the ring exchange.
+where $r$ is an arbitrary complex number. This is the number that controls the ring exchange.\\
+--------------------------------\\
 \\
 \indent (1). In this part we will show the argorithm for an arbitrary systen. We assume the system has some unit cells which can be labeled as the position of each cell $\{\bm{r}\}$, each unit cell has $N$ same atoms, which all have $d$ dimensions. The total hamiltonian should be written as $$
-H=\sum_{\bm{r},i}H_{\bm{r},i}+H_{\mathrm{interaction}}
-$$ and constained by symmetry, all the $H_{\bm{r},i}$ ahouls be same for all $\bm{r}$. The interaction part will be a sum of a list, each list of the term will have this form: $\sum_{\bm{r}}J_{(\bm{0},i_1),(\bm{r}_2,i_2)\cdots (\bm{r}_s,i_s)} \bm{X}^1_{\bm{r},i_1} \bm{X}^2_{\bm{r}+\bm{r}_2,i_2} \cdots\bm{X}^s_{\bm{r}+\bm{r}_s,i_s}$. For the three examples, we have 3, 6, and 8 terms. \\
+H=\sum_{\bm{r}}\sum_{p=1}^{N}H_{\bm{r},p}+H_{\mathrm{interaction}}
+$$ and constained by symmetry, all the $H_{\bm{r},p}$ ahouls be same for all $\bm{r}$. The interaction part will be a sum of a list, each list of the term will have this form: $\sum_{\bm{r}}J_{(\bm{0},p_1),(\bm{r}_2,p_2)\cdots (\bm{r}_s,p_s)} \bm{X}^1_{\bm{r},p_1} \bm{X}^2_{\bm{r}+\bm{r}_2,p_2} \cdots\bm{X}^s_{\bm{r}+\bm{r}_s,p_s}$. For the three examples, we have 3, 6, and 8 terms. \\
  After these examples, we will assume the ground state is already solved and the $i$-th atom in all unit cells have the same wave function:$$
-\left|\psi_{\bm{r},i}\right>=\left|\psi_i\right>
+\left|\psi_{\bm{r},p}\right>=\left|\psi_p\right>
 $$
 and the local mean field hamiltoain is known and diagonalized:
 $$
-h_i=\sum_{m=0}^{d-1}E_{i,m}\left|\psi_{i,m}\right>\left<\psi_{i,m}\right|
+h_p=\sum_{m=0}^{d-1}E_{p,m}\left|\psi_{p,m}\right>\left<\psi_{p,m}\right|
 $$
-where $E_{i,0}<E_{i,1}\leqslant \cdots\leqslant E_{i,d-1}$, and $\left|\psi_{i,0}\right>=\left|\psi_i\right>$
+where $E_{p,0}<E_{p,1}\leqslant \cdots\leqslant E_{p,d-1}$, and $\left|\psi_{p,0}\right>=\left|\psi_p\right>$
 Now, for any operator $\hat{X}$ acting on the $i$-th atom, we will introduce a expansion, define number: $$
-X_{i,mn}=\left<\psi_{i,m}\right|\hat{X}\left|\psi_{i,n}\right>
+X_{p,mn}=\left<\psi_{p,m}\right|\hat{X}\left|\psi_{p,n}\right>
 $$
-and the $\hat{X}$ operator acting on $i$-th  atom of the $\bm{r}$ unit cell will have a expansion:
+and the $\hat{X}$ operator acting on $p$-th  atom of the $\bm{r}$ unit cell will have a expansion:
 $$
-\hat{X}\approx X_{i,00}+\sum_{m=1}^{d-1}\left(\hat{b}_{\bm{r},im}^{\dagger}X_{i,m0}+X_{i,0m}\hat{b}_{\bm{r},im}\right)-X_{i,00}\sum_{m=1}^{d-1}\hat{b}^{\dagger}_{\bm{r},im}\hat{b}_{\bm{r},im}
-+\sum_{m=1}^{d-1}\sum_{n=1}^{d-1}\hat{b}^{\dagger}_{\bm{r},im}X_{i,mn}\hat{b}_{\bm{r},in}$$
+\hat{X}\approx X_{p,00}+\sum_{m=1}^{d-1}\left(\hat{b}_{\bm{r}pm}^{\dagger}X_{p,m0}+X_{p,0m}\hat{b}_{\bm{r}pm}\right)-X_{p,00}\sum_{m=1}^{d-1}\hat{b}^{\dagger}_{\bm{r}pm}\hat{b}_{\bm{r}im}
++\sum_{m=1}^{d-1}\sum_{n=1}^{d-1}\hat{b}^{\dagger}_{\bm{r}pm}X_{p,mn}\hat{b}_{\bm{r}pn}$$
 where the $b$ and $b^{\dagger}$ operators follow the commutation relations:
 $$
-\left[\hat{b}_{\bm{r},im},\hat{b}_{\bm{r}',jn}\right]=\left[\hat{b}^{\dagger}_{\bm{r},im},\hat{b}^{\dagger}_{\bm{r}',jn}\right]=0$$
+\left[\hat{b}_{\bm{r}pm},\hat{b}_{\bm{r}'qn}\right]=\left[\hat{b}^{\dagger}_{\bm{r}pm},\hat{b}^{\dagger}_{\bm{r}'qn}\right]=0$$
 $$
-\left[\hat{b}_{\bm{r},im},\hat{b}^{\dagger}_{\bm{r}',jn}\right]=\delta_{\bm{r}\bm{r}'}\delta_{ij}\delta_{mn}$$
+\left[\hat{b}_{\bm{r}pm},\hat{b}^{\dagger}_{\bm{r}'qn}\right]=\delta_{\bm{r}\bm{r}'}\delta_{pq}\delta_{mn}$$
 Now for each term in the interaction list, you can apply this expansion and get a bunch of terms. Only the second order terms will be kept. You should get a hamiltonian in this form:
  $$H=\sum_{\bm{r},\bm{r}'}\mathbf{X}^{\dagger}_{\bm{r}}\mathbf{H}_{\bm{r}\bm{r}'}\mathbf{X}_{\mathrm{r}'}$$
  where $\mathbf{X}_{\bm{r}}$ is a column verctors of dimension $2N(d-1)$, $$\mathbf{X}_{\bm{r}}=\left(b_{\bm{r},11},b_{\bm{r},12},\cdots,b_{\bm{r},1(d-1)},b_{\bm{r},21},\cdots,b_{\bm{r},N(d-1)},b_{\bm{r},1i}^{\dagger},b_{\bm{r},12}^{\dagger},\cdots,b_{\bm{r},1(d-1)}^{\dagger},b_{\bm{r},21}^{\dagger},\cdots,b_{\bm{r},N(d-1)}^{\dagger}\right)^{\mathsf{T}}$$
- and $\mathbf{H}_{\bm{r},\bm{r}'}$ is a $2N(d-1)\times 2N(d-1)$ matrix.\\
- For example, in 
+and $\mathbf{H}_{\bm{r},\bm{r}'}$ is a $2N(d-1)\times 2N(d-1)$ matrix.\\
+---------------------------------\\
+ For example, in example (a), Let's put in numbers $S=1$, $g=2$ and $J=\SI{1}{\milli\electronvolt}$
+and $\bm{B}=\SI{0.01}{\tesla}\ \hat{z}.$ We can write down the mean field(in meV):
+$$\begin{aligned}
+    h&=  g\mu_{\mathrm{B}} B^z S^z-2J S^z \left<\psi\right|S_z\left|\psi\right>\\
+    & = 2\times 0.05788\times 0.01\times  \begin{bmatrix}
+        0 & \frac{1}{\sqrt{2}} & 0\\
+        \frac{1}{\sqrt{2}} &  0 & \frac{1}{\sqrt{2}}\\
+        0& \frac{1}{\sqrt{2}}& 0
+        \end{bmatrix}-2\times1\times\left( \begin{bmatrix}
+            0 & \frac{1}{\sqrt{2}} & 0\\
+            \frac{1}{\sqrt{2}} &  0 &\frac{1}{\sqrt{2}}\\
+        0& \frac{1}{\sqrt{2}}& 0
+            \end{bmatrix} \left<\psi\right|S_y\left|\psi\right>\right.\\
+           & {\ \ \ \ \ \ \ \ \ \ \ \ \ \ }\indent \indent\indent\indent\left.+\begin{bmatrix}
+                0& -\frac{\ii}{\sqrt{2}} & 0\\
+                \frac{\ii}{\sqrt{2}} &  0 & -\frac{\ii}{\sqrt{2}}\\
+            0& \frac{\ii}{\sqrt{2}}&0
+                \end{bmatrix} \left<\psi\right|S_z\left|\psi\right>+\begin{bmatrix}
+            1 & 0 & 0\\
+        0 &  0 & 0\\
+        0& 0&-1
+            \end{bmatrix} \left<\psi\right|S_z\left|\psi\right>\right)
+\end{aligned}$$
+Using the method in part (B), we can find the ground state $\left|\psi\right>$ and the mean field $h$:
+$$
+\left|\psi\right>=\begin{bmatrix}
+    0.500000 \\
+0.707107 \\
+0.500000
+    \end{bmatrix}
+$$
+$$
+h=\begin{bmatrix}
+    0 & -1.41503 & 0 \\
+    -1.41503 &  0 & -1.41503 \\
+    0 &  -1.41503 & 0
+    \end{bmatrix}
+$$
+now we can diagnolize the Hamiltonian:
+$$E_{0}=-2.001158,\ E_{1}=0.00000,\ E_{2}=2.001158
+$$
+$$\left|\psi_0\right>=\begin{bmatrix}
+    0.500000 \\
+0.707107 \\
+0.500000
+    \end{bmatrix},\left|\psi_1\right>=\begin{bmatrix}
+       -0.707107 \\
+    0.000000 \\
+    0.707107
+        \end{bmatrix},\left|\psi_2\right>=\begin{bmatrix}
+            0.500000 \\
+        -0.707107 \\
+        0.500000
+            \end{bmatrix}
+$$
+with these numbers, we can get the transformed matrices for $S^x$, $S^y$, $S^z$:
 
+$$S^x_{mn}=\begin{bmatrix}
+    1.000000 & 0.000000 & 0.000000 \\
+    0.000000 &  0.000000 & 0.000000 \\
+    0.000000 &  0.000000 & -1.000000
+    \end{bmatrix}$$$$
+S^y_{mn}=\begin{bmatrix}
+        0.000000 & -0.707107\ii & 0.000000 \\
+       0.707107\ii &  0.000000 & -0.707107\ii\\
+        0.000000 &  0.707107\ii & 0.000000
+        \end{bmatrix}$$ $$
+S^z_{mn}=\begin{bmatrix}
+0.000000 & -0.707107 & 0.000000 \\
+-0.707107 &  0.000000 & -0.707107 \\
+0.000000 &  -0.707107 & 0.000000
+\end{bmatrix}
+$$
+Now the operators can be written in a series( since there is only one atom per unit cell, we will remove the $p$ index, only write as $b_{im}$):
+$$
+S_{i}^{x}\approx1.000000+1.000000\ b_{i1}b_{i1}^{\dagger}+2.000000\ b_{i2}b_{i2}^{\dagger}$$$$
+S_{i}^{y}\approx-0.707107\ii\ b_{i1}^{\dagger}+0.707107\ii\ b_{i1}-0.707107\ii\ b_{i1}^{\dagger}b_{i2}+0.707107\ii\ b_{i2}^{\dagger}b_{i1}$$$$
+S_{i}^{z}\approx-0.707107\ b_{i1}^{\dagger}-0.707107\ b_{i1}-0.707107\  b_{i1}^{\dagger}b_{i2}-0.707107\  b_{i2}^{\dagger}b_{i1}$$
+\indent Comment: Notice even in this form, all spin operators keep Hermitian.\\
+\indent Now For the three interactions $S_{i}^x S_{i+1}^x$, $S_{i}^y S_{i+1}^y$, $S_{i}^z S_{i+1}^z$, we will show (only the quadratic terms)
+$$
+\begin{aligned}
+    S_{i}^x S_{i+1}^x &\approx1.000000\left(b_{i1}^{\dagger}b_{i1}+b_{(i+1)1}^{\dagger}b_{(i+1)1}\right)+2.000000\left(b_{i2}^{\dagger}b_{i2}+b_{(i+1)2}^{\dagger}b_{(i+1)2}\right)\\ &=\left[
+        b_{i1}^{\dagger} \ \ 
+        b_{i2}^{\dagger}\  \ 
+        b_{i1}\ \ 
+        b_{i2}\right]
+       \begin{bmatrix}
+            1.000000 & 0 & 0 & 0 \\
+           0 &  2.000000 & 0 &0 \\
+            0 &  0 & 1.000000 &0\\
+            0 & 0 & 0& 2.00000
+            \end{bmatrix}\begin{bmatrix}
+                b_{(i+1)1}  \\
+                b_{(i+1)2}  \\
+                b_{(i+1)1}^{\dagger}\\
+                b_{(i+1)2}^{\dagger}
+                \end{bmatrix}
+\end{aligned}
+$$
+There are constants, because $b_{(i+1)1}b_{(i+1)1}^{\dagger}=b_{(i+1)1}^{\dagger}b_{(i+1)1}+1$, but it is not written.
+$$
+\begin{aligned}
+    S_{i}^z S_{i+1}^z &\approx0.500000\left(b_{i1}^{\dagger}b_{(i+1)1}^{\dagger}+b_{i1}b_{(i+1)1}+b_{i1}b_{(i+1)1}^{\dagger}+b_{i1}^{\dagger}b_{(i+1)1}\right)\\ &=\left[
+        b_{i1}^{\dagger} \ \ 
+        b_{i2}^{\dagger}\  \ 
+        b_{i1}\ \ 
+        b_{i2}\right]
+       \begin{bmatrix}
+            0.500000 & 0 & 0.500000 & 0 \\
+           0 &  0 & 0 &0 \\
+            0.500000 &  0 & 0.500000 &0\\
+            0 & 0 & 0& 0
+            \end{bmatrix}\begin{bmatrix}
+                b_{(i+1)1}  \\
+                b_{(i+1)2}  \\
+                b_{(i+1)1}^{\dagger}\\
+                b_{(i+1)2}^{\dagger}
+                \end{bmatrix}
+\end{aligned}
+$$
+--------------------------------\\
+After the Hamiltonian is 
 \end{document}
