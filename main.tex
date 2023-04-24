@@ -37,7 +37,7 @@
 %\makeatother
 \begin{document}
 \maketitle
-{\large{A}}. In this part, we will develop a method solving the ground state without diagonalizing the Hamiltonian.\\
+{\large{A}}. In this part, we will develop a method to solve the ground state without diagonalizing the Hamiltonian.\\
 \indent (1)  Assume a particle can be discribed by spin only, with $S=1$. and the Hamiltonian is 
 $$ H= S_z.
 $$
@@ -345,10 +345,10 @@ $$
 --------------------------------\\
 After the Hamiltonian is written, we will do Fourier transforms. Define:
 $$ \begin{aligned}
-    \hat{b}_{\bm{k}im}=\frac{1}{\sqrt{A}}\sum_{\bm{r}}\hat{b}_{\bm{r}im}\e^{-\ii\bm{k}\cdot\bm{r}} \\
-    \hat{b}_{\bm{k}im}^{\dagger}=\frac{1}{\sqrt{A}}\sum_{\bm{r}}\hat{b}_{\bm{r}im}^{\dagger}\e^{\ii\bm{k}\cdot\bm{r}}
+    \hat{b}_{\bm{k}pm}=\frac{1}{\sqrt{A}}\sum_{\bm{r}}\hat{b}_{\bm{r}pm}\e^{-\ii\bm{k}\cdot\bm{r}} \\
+    \hat{b}_{\bm{k}pm}^{\dagger}=\frac{1}{\sqrt{A}}\sum_{\bm{r}}\hat{b}_{\bm{r}pm}^{\dagger}\e^{\ii\bm{k}\cdot\bm{r}}
     \end{aligned} $$
-where $A$ is the nomalizing factor which gives the commutation relation $\left[\hat{b}_{\bm{k}im},\hat{b}_{\bm{k'}i'm'}^{\dagger}\right]=\delta_{\bm{k}\bm{k}'}\delta_{ii'}\delta_{mm'}$. Now the Hamiltonian can be written in the momentum space and a algorithm propose by Colpa could properly diagnolized this Hamiltonian. In the algorithm, the Hamiltonian is written as $\sum_{\bm{k}}\mathbf{X}^{\dagger}_{\bm{k}}\mathbf{H}_{\bm{k}}\mathbf{X}_{\bm{k}}$ where $\mathbf{X}_{\bm{k}}=\left(b_{\bm{k}11},\cdots,b_{\bm{k}1(d-1)},\cdots,b_{\bm{k}n(d-1))},b_{(-\bm{k})11}^{\dagger},\cdots,b_{(-\bm{k})n(d-1)}^{\dagger}\right)^{\mathsf{T}}$. It is very easy to get the energies. Difine a matrix:$$
+where $A$ is the nomalizing factor which gives the commutation relation $\left[\hat{b}_{\bm{k}pm},\hat{b}_{\bm{k'}qn}^{\dagger}\right]=\delta_{\bm{k}\bm{k}'}\delta_{pq}\delta_{mn}$. Now the Hamiltonian can be written in the momentum space and a algorithm propose by Colpa could properly diagnolized this Hamiltonian. In the algorithm, the Hamiltonian is written as $\sum_{\bm{k}}\mathbf{X}^{\dagger}_{\bm{k}}\mathbf{H}_{\bm{k}}\mathbf{X}_{\bm{k}}$ where $\mathbf{X}_{\bm{k}}=\left(b_{\bm{k}11},\cdots,b_{\bm{k}1(d-1)},\cdots,b_{\bm{k}n(d-1))},b_{(-\bm{k})11}^{\dagger},\cdots,b_{(-\bm{k})n(d-1)}^{\dagger}\right)^{\mathsf{T}}$. It is very easy to get the energies. Difine a matrix:$$
 \mathbf{g}=\begin{bmatrix}
     \mathbf{1} & \mathbf{0}  \\
     \mathbf{0} &  \mathbf{1}
@@ -358,5 +358,11 @@ where $\mathbf{1}$ means a identity matrix of dimension $n(d-1)$ and $\mathbf{0}
 There is another way to get the energies and get information of the transformation. The first step is to do Cholesky decomposition $\mathbf{H}=\mathbf{K}^{\dagger}\mathbf{K}$. This requires that $\mathbf{H}$ must be positive definite, otherwise is not decomposivable. If you do not get this, it means that you made a mistake. (needs to be finished) \\
 --------------------------------\\
 In example (a). We will first show the the Fourier transformation for $S_i^x S_{i+1}^x$:\\
+$$S_{i}^x S_{i+1}^x \approx1.000000\left(b_{i1}^{\dagger}b_{i1}+b_{(i+1)1}^{\dagger}b_{(i+1)1}\right)+2.000000\left(b_{i2}^{\dagger}b_{i2}+b_{(i+1)2}^{\dagger}b_{(i+1)2}\right)$$
+We have $$
+b_{km}=\frac{1}{\sqrt{A}}\sum_{i}b_{im}\e^{-\ii (k i)}
+$$$$
+b^{\dagger}_{km}=\frac{1}{\sqrt{A}}\sum_{i}b_{im}^{\dagger}\e^{+\ii (k i)}
+$$
 --------------------------------\\
 \end{document}
