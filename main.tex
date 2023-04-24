@@ -357,12 +357,26 @@ $$
 where $\mathbf{1}$ means a identity matrix of dimension $n(d-1)$ and $\mathbf{0}$ means a zero matrix. To get the energies, solve the eigenvalues of matrix $\mathbf{H}.\mathbf{g}$. There will be $n(d-1)$ positive numbers and the othere negitive ones on the positive numbers times $-1$. The $n(d-1)$ numbers are the energies of excitations. After this, Plotting the numbers as with different $k$ will give you the dispersion.\\
 There is another way to get the energies and get information of the transformation. The first step is to do Cholesky decomposition $\mathbf{H}=\mathbf{K}^{\dagger}\mathbf{K}$. This requires that $\mathbf{H}$ must be positive definite, otherwise is not decomposivable. If you do not get this, it means that you made a mistake. (needs to be finished) \\
 --------------------------------\\
-In example (a). We will first show the the Fourier transformation for $S_i^x S_{i+1}^x$:\\
-$$S_{i}^x S_{i+1}^x \approx1.000000\left(b_{i1}^{\dagger}b_{i1}+b_{(i+1)1}^{\dagger}b_{(i+1)1}\right)+2.000000\left(b_{i2}^{\dagger}b_{i2}+b_{(i+1)2}^{\dagger}b_{(i+1)2}\right)$$
+In example (a). We will first show the the Fourier transformation for $S_j^x S_{j+1}^x$(since i is used for imaginary number, we will change the index or unit cell to $j$):\\
+$$S_{j}^x S_{j+1}^x \approx1.000000\left(b_{j1}^{\dagger}b_{j1}+b_{(j+1)1}^{\dagger}b_{(j+1)1}\right)+2.000000\left(b_{j2}^{\dagger}b_{j2}+b_{(j+1)2}^{\dagger}b_{(j+1)2}\right)$$
 We have $$
-b_{km}=\frac{1}{\sqrt{A}}\sum_{i}b_{im}\e^{-\ii (k i)}
+b_{km}=\frac{1}{\sqrt{A}}\sum_{j}b_{jm}\e^{-\ii (k j)}
 $$$$
-b^{\dagger}_{km}=\frac{1}{\sqrt{A}}\sum_{i}b_{im}^{\dagger}\e^{+\ii (k i)}
+b^{\dagger}_{km}=\frac{1}{\sqrt{A}}\sum_{j}b_{jm}^{\dagger}\e^{+\ii (k j)}
 $$
+and the inverse transforms:$$
+b_{jm}=\frac{1}{\sqrt{A}}\sum_{k}b_{km}\e^{\ii (k j)}
+$$$$
+b^{\dagger}_{jm}=\frac{1}{\sqrt{A}}\sum_{k}b_{km}^{\dagger}\e^{-\ii (k j)}
+$$
+for $m=1,2$. and we have:
+$$\begin{aligned}
+&\indent \sum_j b_{j1}^{\dagger}b_{j1} \\
+&=\frac{1}{A}\sum_{j}\sum_{k}\sum_{k'}b_{k1}^{\dagger}\e^{-\ii kj}b_{k'1}^{\dagger}\e^{+\ii k'j}\\
+&=\frac{1}{A}\sum_{kk'}b_{k1}^{\dagger}b_{k'1}\sum_{j}\e^{\ii(k'-k)j}\\
+&=\frac{1}{A}\sum_{kk'}b_{k1}^{\dagger}b_{k'1} A \delta_{kk'}\\
+&=\sum_{k}b_{k1}^{\dagger}b_{k1}
+\end{aligned}
+$$\\
 --------------------------------\\
 \end{document}
