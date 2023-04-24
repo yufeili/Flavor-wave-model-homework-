@@ -374,9 +374,55 @@ $$\begin{aligned}
 &\indent \sum_j b_{j1}^{\dagger}b_{j1} \\
 &=\frac{1}{A}\sum_{j}\sum_{k}\sum_{k'}b_{k1}^{\dagger}\e^{-\ii kj}b_{k'1}^{\dagger}\e^{+\ii k'j}\\
 &=\frac{1}{A}\sum_{kk'}b_{k1}^{\dagger}b_{k'1}\sum_{j}\e^{\ii(k'-k)j}\\
-&=\frac{1}{A}\sum_{kk'}b_{k1}^{\dagger}b_{k'1} A \delta_{kk'}\\
+&=\frac{1}{A}\sum_{kk'}b_{k1}^{\dagger}b_{k'1} A \delta_{k,k'}\\
 &=\sum_{k}b_{k1}^{\dagger}b_{k1}
 \end{aligned}
-$$\\
+$$
+Now the $S_j^x S_{j+1}^x$ term is going to be$$\begin{aligned}
+& \indent \sum_j 1.000000\left(b_{j1}^{\dagger}b_{j1}+b_{(j+1))1}^{\dagger}b_{(j+1))1}\right)+2.000000\left(b_{j2}^{\dagger}b_{j2}+b_{(j+1))2}^{\dagger}b_{(j+1))2}\right)\\
+&= \sum_{k}2.000000b_{k1}^{\dagger}b_{k1}+4.000000b_{k2}^{\dagger}b_{k2}\\
+&=0.500000\left[
+    b_{k1}^{\dagger} \ \ 
+    b_{k2}^{\dagger}\  \ 
+    b_{(-k)1}\ \ 
+    b_{(-k))2}\right]
+   \begin{bmatrix}
+        4 & 0 & 0 & 0 \\
+       0 &  8 & 0 &0 \\
+       0 &  0 & 0 &0\\
+        0 & 0 & 0& 0
+        \end{bmatrix}\begin{bmatrix}
+            b_{k1}  \\
+            b_{k2}  \\
+            b_{(-k)1}^{\dagger}\\
+            b_{(-k)2}^{\dagger}
+            \end{bmatrix}
+\end{aligned}
+$$
+and the $S_j^z S_{j+1}^z$ term will be $$
+\begin{aligned}
+  & \indent  0.500000\sum_{j}\left(b_{j1}^{\dagger}b_{(j+1)1}^{\dagger}+b_{j1}b_{(j+1)1}+b_{j1}b_{(j+1)1}^{\dagger}+b_{j1}^{\dagger}b_{(j+1)1}\right)\\
+  &=\frac{0.500000}{A}\sum_{j}\sum_{k}\sum_{k'}\left(b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{-\ii kj}\e^{-\ii k'(j+1)}+b_{k1}b_{k'1}\e^{\ii kj}\e^{\ii k'(j+1)}+b_{k1}b_{k'1}^{\dagger}\e^{\ii kj}\e^{-\ii k'(j+1)}+b_{k1}^{\dagger}b_{k'1}\e^{-\ii kj}\e^{\ii k'(j+1)}\right)\\
+  &=\frac{0.500000}{A}\sum_{k}\sum_{k'}\left(b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{-\ii k'}\sum_j \e^{-\ii (k+k')j}+b_{k1}b_{k'}\e^{\ii k'}\sum_j \e^{\ii (k+k')j}+b_{k1}b_{k'1}^{\dagger}\e^{-\ii k'}\sum_j \e^{\ii (k-k')j}+b_{k1}^{\dagger}b_{k'1}\e^{\ii k'}\sum_j \e^{-\ii (k+k')j}\right)\\
+  &=0.500000\sum_k\sum_{k'}\left(b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{-\ii k'}\delta_{-k,k'}+b_{k1}b_{k'1}\e^{\ii k'}\delta_{-k,k'}+b_{k1}b_{k'1}^{\dagger}\e^{-\ii k'}\delta_{k,k'}+b_{k1}^{\dagger}b_{k'1}\e^{\ii k'}\delta_{k,k'}\right)\\
+  &=0.500000\sum_k\sum_{k'}\left(b_{k1}^{\dagger}b_{(-k)1}^{\dagger}\e^{\ii k}+b_{k1}b_{(-k)1}\e^{-\ii k}+b_{k1}b_{k1}^{\dagger}\e^{-\ii k}+b_{k1}^{\dagger}b_{k1}\e^{\ii k}\right)\\
+  &=0.500000\left[
+    b_{k1}^{\dagger} \ \ 
+    b_{k2}^{\dagger}\  \ 
+    b_{(-k)1}\ \ 
+    b_{(-k))2}\right]
+   \begin{bmatrix}
+        \e^{\ii k} & 0 & \e^{-\ii k} & 0 \\
+       0 &  0 & 0 &0 \\
+       \e^{\ii k} &  0 & \e^{-\ii k} &0\\
+        0 & 0 & 0& 0
+        \end{bmatrix}\begin{bmatrix}
+            b_{k1}  \\
+            b_{k2}  \\
+            b_{(-k)1}^{\dagger}\\
+            b_{(-k)2}^{\dagger}
+            \end{bmatrix}
+\end{aligned}
+$$
 --------------------------------\\
 \end{document}
