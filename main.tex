@@ -322,7 +322,7 @@ $$
 $$
 $$
 \begin{aligned}
-    S_{i}^y S_{i+1}^y &\approx0.500000\frac{1}{2}\left(-b_{i1}^{\dagger}b_{(i+1)1}^{\dagger}-b_{i1}b_{(i+1)1}+b_{i1}b_{(i+1)1}^{\dagger}+b_{i1}^{\dagger}b_{(i+1)1}\right)\\ &=\left[
+    S_{i}^y S_{i+1}^y &\approx\frac{1}{2}\left(-b_{i1}^{\dagger}b_{(i+1)1}^{\dagger}-b_{i1}b_{(i+1)1}+b_{i1}b_{(i+1)1}^{\dagger}+b_{i1}^{\dagger}b_{(i+1)1}\right)\\ &=\left[
         b_{i1}^{\dagger} \ \ 
         b_{i2}^{\dagger}\  \ 
         b_{i1}\ \ 
@@ -345,7 +345,7 @@ $$
     S_{i}^z S_{i+1}^z &\approx-\left(b_{i1}^{\dagger}b_{i1}+b_{(i+1)1}^{\dagger}b_{(i+1)1}\right)-2\left(b_{i2}^{\dagger}b_{i2}+b_{(i+1)2}^{\dagger}b_{(i+1)2}\right)
 \end{aligned}
 $$
-There are constants, because $b_{(i+1)1}b_{(i+1)1}^{\dagger}=b_{(i+1)1}^{\dagger}b_{(i+1)1}+1$, but it is not written. \\
+There are constants, because $b_{(i+1)1}b_{(i+1)1}^{\dagger}=b_{(i+1)1}^{\dagger}b_{(i+1)1}+1$, but it is not written. Notice how the $S_{i}^z S_{i+1}^z$  term is different from othes.\\
 --------------------------------\\
 After the Hamiltonian is written, we will do Fourier transforms. Define:
 $$ \begin{aligned}
@@ -364,14 +364,14 @@ There is another way to get the energies and get information of the transformati
 In example (a). We will first show the the Fourier transformation for $S_j^z S_{j+1}^z$(since i is used for imaginary number, we will change the index or unit cell to $j$):\\
 $$S_{j}^z S_{j+1}^z \approx-\left(b_{j1}^{\dagger}b_{j1}+b_{(j+1)1}^{\dagger}b_{(j+1)1}\right)-2\left(b_{j2}^{\dagger}b_{j2}+b_{(j+1)2}^{\dagger}b_{(j+1)2}\right)$$
 We have $$
-b_{km}=\frac{1}{\sqrt{A}}\sum_{j}b_{jm}\e^{-\ii (k j)}
+b_{km}=\frac{1}{\sqrt{A}}\sum_{j}b_{jm}\e^{-\ii k j}
 $$$$
-b^{\dagger}_{km}=\frac{1}{\sqrt{A}}\sum_{j}b_{jm}^{\dagger}\e^{+\ii (k j)}
+b^{\dagger}_{km}=\frac{1}{\sqrt{A}}\sum_{j}b_{jm}^{\dagger}\e^{+\ii k j}
 $$
 and the inverse transforms:$$
-b_{jm}=\frac{1}{\sqrt{A}}\sum_{k}b_{km}\e^{\ii (k j)}
+b_{jm}=\frac{1}{\sqrt{A}}\sum_{k}b_{km}\e^{\ii k j}
 $$$$
-b^{\dagger}_{jm}=\frac{1}{\sqrt{A}}\sum_{k}b_{km}^{\dagger}\e^{-\ii (k j)}
+b^{\dagger}_{jm}=\frac{1}{\sqrt{A}}\sum_{k}b_{km}^{\dagger}\e^{-\ii k j}
 $$
 for $m=1,2$. and we have:
 $$\begin{aligned}
@@ -403,22 +403,23 @@ Now the $S_j^z S_{j+1}^z$ term is going to be$$\begin{aligned}
             \end{bmatrix}
 \end{aligned}
 $$
-and the $S_j^x S_{j+1}^x$ term:
+Notice that term doesn't change with momentum $k$.\\
+And the $S_j^x S_{j+1}^x$ term:
 $$\begin{aligned}
-    & \indent  0.500000\sum_{j}\left(-b_{j1}^{\dagger}b_{(j+1)1}^{\dagger}-b_{j1}b_{(j+1)1}+b_{j1}b_{(j+1)1}^{\dagger}+b_{j1}^{\dagger}b_{(j+1)1}\right)\\
-    &=\frac{0.500000}{A}\sum_{j}\sum_{k}\sum_{k'}\left(-b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{-\ii kj}\e^{-\ii k'(j+1)}-b_{k1}b_{k'1}\e^{\ii kj}\e^{\ii k'(j+1)}+b_{k1}b_{k'1}^{\dagger}\e^{\ii kj}\e^{-\ii k'(j+1)}+b_{k1}^{\dagger}b_{k'1}\e^{-\ii kj}\e^{\ii k'(j+1)}\right)\\
-    &=\frac{0.500000}{A}\sum_{k}\sum_{k'}\left(-b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{-\ii k'}\sum_j \e^{-\ii (k+k')j}-b_{k1}b_{k'}\e^{\ii k'}\sum_j \e^{\ii (k+k')j}+b_{k1}b_{k'1}^{\dagger}\e^{-\ii k'}\sum_j \e^{\ii (k-k')j}+b_{k1}^{\dagger}b_{k'1}\e^{\ii k'}\sum_j \e^{-\ii (k+k')j}\right)\\
-    &=0.500000\sum_k\sum_{k'}\left(-b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{-\ii k'}\delta_{-k,k'}-b_{k1}b_{k'1}\e^{\ii k'}\delta_{-k,k'}+b_{k1}b_{k'1}^{\dagger}\e^{-\ii k'}\delta_{k,k'}+b_{k1}^{\dagger}b_{k'1}\e^{\ii k'}\delta_{k,k'}\right)\\
-    &=0.500000\sum_k\sum_{k'}\left(-b_{k1}^{\dagger}b_{(-k)1}^{\dagger}\e^{\ii k}-b_{k1}b_{(-k)1}\e^{-\ii k}+b_{k1}b_{k1}^{\dagger}\e^{-\ii k}+b_{k1}^{\dagger}b_{k1}\e^{\ii k}\right)\\
-    &=0.500000\sum_k \left[
+    & \indent  \frac{1}{2}\sum_{j}\left(b_{j1}^{\dagger}b_{(j+1)1}^{\dagger}+b_{j1}b_{(j+1)1}+b_{j1}b_{(j+1)1}^{\dagger}+b_{j1}^{\dagger}b_{(j+1)1}\right)\\
+    &=\frac{1}{2A}\sum_{j}\sum_{k}\sum_{k'}\left(b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{-\ii kj}\e^{-\ii k'(j+1)}+b_{k1}b_{k'1}\e^{\ii kj}\e^{\ii k'(j+1)}+b_{k1}b_{k'1}^{\dagger}\e^{\ii kj}\e^{-\ii k'(j+1)}+b_{k1}^{\dagger}b_{k'1}\e^{-\ii kj}\e^{\ii k'(j+1)}\right)\\
+    &=\frac{1}{2A}\sum_{k}\sum_{k'}\left(b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{-\ii k'}\sum_j \e^{-\ii (k+k')j}+b_{k1}b_{k'}\e^{\ii k'}\sum_j \e^{\ii (k+k')j}+b_{k1}b_{k'1}^{\dagger}\e^{-\ii k'}\sum_j \e^{\ii (k-k')j}+b_{k1}^{\dagger}b_{k'1}\e^{\ii k'}\sum_j \e^{-\ii (k+k')j}\right)\\
+    &=\frac{1}{2}\sum_k\sum_{k'}\left(b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{-\ii k'}\delta_{-k,k'}+b_{k1}b_{k'1}\e^{\ii k'}\delta_{-k,k'}+b_{k1}b_{k'1}^{\dagger}\e^{-\ii k'}\delta_{k,k'}+b_{k1}^{\dagger}b_{k'1}\e^{\ii k'}\delta_{k,k'}\right)\\
+    &=\frac{1}{2}\sum_k\sum_{k'}\left(b_{k1}^{\dagger}b_{(-k)1}^{\dagger}\e^{\ii k}+b_{k1}b_{(-k)1}\e^{-\ii k}+b_{k1}b_{k1}^{\dagger}\e^{-\ii k}+b_{k1}^{\dagger}b_{k1}\e^{\ii k}\right)\\
+    &=\frac{1}{2}\sum_k \left[
       b_{k1}^{\dagger} \ \ 
       b_{k2}^{\dagger}\  \ 
       b_{(-k)1}\ \ 
       b_{(-k))2}\right]
      \begin{bmatrix}
-          -\e^{\ii k} & 0 & \e^{-\ii k} & 0 \\
+          \e^{\ii k} & 0 & \e^{-\ii k} & 0 \\
          0 &  0 & 0 &0 \\
-         \e^{\ii k} &  0 & -\e^{-\ii k} &0\\
+         \e^{\ii k} &  0 & \e^{-\ii k} &0\\
           0 & 0 & 0& 0
           \end{bmatrix}\begin{bmatrix}
               b_{k1}  \\
@@ -428,23 +429,23 @@ $$\begin{aligned}
               \end{bmatrix}
   \end{aligned}
   $$
-  and the $S_j^z S_{j+1}^z$ term:
+  and the $S_j^y S_{j+1}^y$ term:
   $$
 \begin{aligned}
-  & \indent  0.500000\sum_{j}\left(b_{j1}^{\dagger}b_{(j+1)1}^{\dagger}+b_{j1}b_{(j+1)1}+b_{j1}b_{(j+1)1}^{\dagger}+b_{j1}^{\dagger}b_{(j+1)1}\right)\\
-  &=\frac{0.500000}{A}\sum_{j}\sum_{k}\sum_{k'}\left(b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{-\ii kj}\e^{-\ii k'(j+1)}+b_{k1}b_{k'1}\e^{\ii kj}\e^{\ii k'(j+1)}+b_{k1}b_{k'1}^{\dagger}\e^{\ii kj}\e^{-\ii k'(j+1)}+b_{k1}^{\dagger}b_{k'1}\e^{-\ii kj}\e^{\ii k'(j+1)}\right)\\
-  &=\frac{0.500000}{A}\sum_{k}\sum_{k'}\left(b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{-\ii k'}\sum_j \e^{-\ii (k+k')j}+b_{k1}b_{k'}\e^{\ii k'}\sum_j \e^{\ii (k+k')j}+b_{k1}b_{k'1}^{\dagger}\e^{-\ii k'}\sum_j \e^{\ii (k-k')j}+b_{k1}^{\dagger}b_{k'1}\e^{\ii k'}\sum_j \e^{-\ii (k+k')j}\right)\\
-  &=0.500000\sum_k\sum_{k'}\left(b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{-\ii k'}\delta_{-k,k'}+b_{k1}b_{k'1}\e^{\ii k'}\delta_{-k,k'}+b_{k1}b_{k'1}^{\dagger}\e^{-\ii k'}\delta_{k,k'}+b_{k1}^{\dagger}b_{k'1}\e^{\ii k'}\delta_{k,k'}\right)\\
-  &=0.500000\sum_k\sum_{k'}\left(b_{k1}^{\dagger}b_{(-k)1}^{\dagger}\e^{\ii k}+b_{k1}b_{(-k)1}\e^{-\ii k}+b_{k1}b_{k1}^{\dagger}\e^{-\ii k}+b_{k1}^{\dagger}b_{k1}\e^{\ii k}\right)\\
-  &=0.500000\sum_k \left[
+  & \indent  \frac{1}{2}\sum_{j}\left(-b_{j1}^{\dagger}b_{(j+1)1}^{\dagger}-b_{j1}b_{(j+1)1}+b_{j1}b_{(j+1)1}^{\dagger}+b_{j1}^{\dagger}b_{(j+1)1}\right)\\
+  &=\frac{1}{2A}\sum_{j}\sum_{k}\sum_{k'}\left(-b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{-\ii kj}\e^{-\ii k'(j+1)}-b_{k1}b_{k'1}\e^{\ii kj}\e^{\ii k'(j+1)}+b_{k1}b_{k'1}^{\dagger}\e^{\ii kj}\e^{-\ii k'(j+1)}+b_{k1}^{\dagger}b_{k'1}\e^{-\ii kj}\e^{\ii k'(j+1)}\right)\\
+  &=\frac{1}{2A}\sum_{k}\sum_{k'}\left(-b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{-\ii k'}\sum_j \e^{-\ii (k+k')j}-b_{k1}b_{k'}\e^{\ii k'}\sum_j \e^{\ii (k+k')j}+b_{k1}b_{k'1}^{\dagger}\e^{-\ii k'}\sum_j \e^{\ii (k-k')j}+b_{k1}^{\dagger}b_{k'1}\e^{\ii k'}\sum_j \e^{-\ii (k+k')j}\right)\\
+  &=\frac{1}{2A}\sum_k\sum_{k'}\left(-b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{-\ii k'}\delta_{-k,k'}-b_{k1}b_{k'1}\e^{\ii k'}\delta_{-k,k'}+b_{k1}b_{k'1}^{\dagger}\e^{-\ii k'}\delta_{k,k'}+b_{k1}^{\dagger}b_{k'1}\e^{\ii k'}\delta_{k,k'}\right)\\
+  &=\frac{1}{2A}\sum_k\sum_{k'}\left(-b_{k1}^{\dagger}b_{(-k)1}^{\dagger}\e^{\ii k}+b_{k1}b_{(-k)1}\e^{-\ii k}-b_{k1}b_{k1}^{\dagger}\e^{-\ii k}+b_{k1}^{\dagger}b_{k1}\e^{\ii k}\right)\\
+  &=\frac{1}{2}\sum_k \left[
     b_{k1}^{\dagger} \ \ 
     b_{k2}^{\dagger}\  \ 
     b_{(-k)1}\ \ 
     b_{(-k))2}\right]
    \begin{bmatrix}
-        \e^{\ii k} & 0 & \e^{-\ii k} & 0 \\
+        \e^{\ii k} & 0 & -\e^{-\ii k} & 0 \\
        0 &  0 & 0 &0 \\
-       \e^{\ii k} &  0 & \e^{-\ii k} &0\\
+       -\e^{\ii k} &  0 & \e^{-\ii k} &0\\
         0 & 0 & 0& 0
         \end{bmatrix}\begin{bmatrix}
             b_{k1}  \\
@@ -454,7 +455,55 @@ $$\begin{aligned}
             \end{bmatrix}
 \end{aligned}
 $$
-Now we can write down the full Hamiltonian:
-$$H=\sum_{k}$$
+The local mean field Hamiltonian $$
+h=\begin{bmatrix}
+    -2.00116 & 0 & 0 \\
+   0 &  0 & 0  \\
+  0 &  0 & 2.00116 \\
+    \end{bmatrix}
+$$
+and the bosonic operator form is:$$
+h_{j}\approx-2.00116+2.00116\ b_{j1}}^{\dagger}b_{j1}+4.00332\ b_{j2}^{\dagger}b_{j2}
+$$
+And transform this into the momentum space:$$
+\begin{aligned}
+    &\indent \sum_j  h_j\\
+    &=\sum _j -2.00116+2.00116\ b_{j1}^{\dagger}b_{j1}+4.00332\ b_{j2}^{\dagger}b_{j2}\\
+    &=\sum_{k}+2.00116b_{k1}^{\dagger}b_{k1}+4.00332b_{k2}^{\dagger}b_{k2} \indent \text{(constant ignored)}\\
+    &=\sum_k \left[
+        b_{k1}^{\dagger} \ \ 
+        b_{k2}^{\dagger}\  \ 
+        b_{(-k)1}\ \ 
+        b_{(-k))2}\right]
+       \begin{bmatrix}
+        2.00116 & 0 & 0 & 0 \\
+           0 &  4.00232 & 0 &0 \\
+           0 &  0 & 0 &0\\
+            0 & 0 & 0& 0
+            \end{bmatrix}\begin{bmatrix}
+                b_{k1}  \\
+                b_{k2}  \\
+                b_{(-k)1}^{\dagger}\\
+                b_{(-k)2}^{\dagger}
+                \end{bmatrix}
+\end{aligned}
+$$
+Now summing up all the terms, and remember that there is a coefficient $-J=-1$ in front of the three terms $S_j^x S_{j+1}^x$, $S_j^y S_{j+1}^y$ and $S_j^z S_{j+1}^\z$. We can get the Hamiltonian in the momentum space:
+$$H=\sum_k \left[
+    b_{k1}^{\dagger} \ \ 
+    b_{k2}^{\dagger}\  \ 
+    b_{(-k)1}\ \ 
+    b_{(-k))2}\right]
+   \begin{bmatrix}
+    2.00116 & 0 & 0 & 0 \\
+       0 &  4.00232 & 0 &0 \\
+       0 &  0 & 0 &0\\
+        0 & 0 & 0& 0
+        \end{bmatrix}\begin{bmatrix}
+            b_{k1}  \\
+            b_{k2}  \\
+            b_{(-k)1}^{\dagger}\\
+            b_{(-k)2}^{\dagger}
+            \end{bmatrix}$$
 --------------------------------\\
 \end{document}
