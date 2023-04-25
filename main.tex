@@ -37,7 +37,8 @@
 %\makeatother
 \begin{document}
 \maketitle
-{\large{A}}. In this part, we will develop a method to solve the ground state without diagonalizing the Hamiltonian.\\
+The purpose of this file is to understand and develop your own program of the flavor wave model.\\
+{\large{A}}. In this part, we will develop a method to solve the ground state without diagonalizing the Hamiltonian. \\
 \indent (1)  Assume a particle can be discribed by spin only, with $S=1$. and the Hamiltonian is 
 $$ H= S_z.
 $$
@@ -59,7 +60,7 @@ $$\left|\psi_{n+1}\right>=\frac{\left|\phi_{n+1}\right>}{\left<\phi_{n+1}|\phi_{
 Draw (i)$\left|\left<a_0|\psi_n\right>\right|^2$ as a function of $n$. and 
 (ii) $\left<\psi_n|H|\psi_n\right>$ as a function of n. Also try with differenct positive values of $\varepsilon$ and see how the value will change the speed of converging.\\
 \indent (4) repeat (2) and (3) with $\left|\psi_0\right>=\left|S_z=0\right>$. (Some weird thing could happen, depending on the computer.)\\ 
-\indent (5) repeat (4) but in each step, add a random small distortion to the wavefunction. Observe how the algorithm converges. Remember to Normalize the wavefunction after distortion.\\ 
+\indent (5) repeat (4) but in each step, add a random small distortion to the wavefunction. Observe how the algorithm converges. Remember to Normalize the wavefunction after distortion. \\ 
 \indent (6) For a general Hamiltonian
 $$ H = \sum_{i=0}^{d-1} E_{i} \left|a_i\right>\left<a_i\right|
 $$
@@ -158,7 +159,7 @@ $$
     &=\lambda \left(S_xL_x+S_y L_y+S_z L_z\right)+\mu_{\mathrm{B}}\left( B_x(2S_x+L_x)+B_y(2S_y+L_y)+B_z(2S_z+L_z) \right)\\&\ \ \ \ \ \ \ \ \ -2JS_x\left<\psi\right|S_x\left|\psi\right>-2JS_y\left<\psi\right|S_y\left|\psi\right>-2JS_z\left<\psi\right|S_z\left|\psi\right>
 \end{aligned}
 $$
-where all the matrices are $(2S+1)(2L+1)=6$ dimensional matrices. Now lets assign numbers $\lambda=\SI{1}{\milli\electronvolt}$  and $J=\SI{1}{\milli\electronvolt}$ wich constant $\mu_{\mathrm{B}}=\SI{0.05788}{\milli\electronvolt/\tesla}$, you should be able to get the ground state. Try start from a external field  $\bm{B}=\SI{40}{\tesla}\ \hat{z}$ and decrease the field to 0 slowly. Calculate the magnetic dipole per atom $m_z=-\left<\psi\right|2S_z+L_z\left|\psi\right>$ and plot the magnetic dipole as a function of field. You should see the saturated first at a strong field, which gives $m_z=2$. As field decreases, you should see $m_z$ starts decreasing at a certain field and it doen't go to 0 when the field aprroches 0 and it jumps when the field changes sign. This makes sense because this is a ferromagnetic system and there is only single domain.\\
+where all the matrices are $(2S+1)(2L+1)=6$ dimensional matrices. Now lets assign numbers $\lambda=\SI{1}{\milli\electronvolt}$  and $J=\SI{1}{\milli\electronvolt}$ wich constant $\mu_{\mathrm{B}}=\SI{0.05788}{\milli\electronvolt/\tesla}$, you should be able to get the ground state. Try start from a external field  $\bm{B}=\SI{40}{\tesla}\ \hat{z}$ and decrease the field to 0 slowly. Calculate the magnetic dipole per atom $m_z=-\left<\psi\right|2S_z+L_z\left|\psi\right>$ and plot the magnetic dipole as a function of field. You should see the saturated first at a strong field, which gives $m_z=2$. As field decreases, you should see $m_z$ starts decreasing at a certain field and it doen't go to 0 when the field aprroches 0 and it jumps when the field changes sign. This makes sense because this is a ferromagnetic system and there is only single domain. \\
 \indent(5) Now we will look at a antiferromagnetic system. The difference is that there are 2 atoms per unit cell. We will label the atoms as $(i,1)$ and $(i,2)$. With a positive number $J$, the Hamiltonian is $$
 H=\sum_i\lambda\left(\bm{S}_{i,1}\cdot\bm{L}_{i,1}+\bm{S}_{i,2}\cdot\bm{L}_{i,2}\right)+\mu_{\mathrm{B}} (2\bm{S}_{i,1}+\bm{L}_{i,1}+2\bm{S}_{i,2}+\bm{L}_{i,2})\cdot \bm{B}+\frac{J}{2  }\left(\bm{S}_{i-1,2}\cdot\bm{S}_{i,1}+2\bm{S}_{i,1}\cdot\bm{S}_{i,2}+\bm{S}_{i,2}\cdot\bm{S}_{i+1,1}\right)
 $$ We will apply the assumption: $\left|\psi_{i,1}\right>=\left|\psi_1 \right>$ and $\left|\psi_{i,2}\right>=\left|\psi_2 \right>$ and now the mean field on atom 1 will be:
@@ -222,23 +223,23 @@ Now for each term in the interaction list, you can apply this expansion and get 
 and $\mathbf{H}_{\bm{r},\bm{r}'}$ is a $2N(d-1)\times 2N(d-1)$ matrix.\\
 ---------------------------------\\
  For example, in example (a), Let's put in numbers $S=1$, $g=2$ and $J=\SI{1}{\milli\electronvolt}$
-and $\bm{B}=\SI{0.01}{\tesla}\ \hat{z}.$ We can write down the mean field(in meV):
+and $\bm{B}=-\SI{0.01}{\tesla}\ \hat{x}.$ We can write down the mean field(in meV):
 $$\begin{aligned}
     h&=  g\mu_{\mathrm{B}} B^z S^z-2J S^z \left<\psi\right|S_z\left|\psi\right>\\
     & = 2\times 0.05788\times 0.01\times  \begin{bmatrix}
-        0 & \frac{1}{\sqrt{2}} & 0\\
-        \frac{1}{\sqrt{2}} &  0 & \frac{1}{\sqrt{2}}\\
-        0& \frac{1}{\sqrt{2}}& 0
+        1 & 0 & 0\\
+       0 &  0 & 0\\
+        0& 0 & -1
         \end{bmatrix}-2\times1\times\left( \begin{bmatrix}
             0 & \frac{1}{\sqrt{2}} & 0\\
             \frac{1}{\sqrt{2}} &  0 &\frac{1}{\sqrt{2}}\\
         0& \frac{1}{\sqrt{2}}& 0
-            \end{bmatrix} \left<\psi\right|S_y\left|\psi\right>\right.\\
+            \end{bmatrix} \left<\psi\right|S_x\left|\psi\right>\right.\\
            & {\ \ \ \ \ \ \ \ \ \ \ \ \ \ }\indent \indent\indent\indent\left.+\begin{bmatrix}
                 0& -\frac{\ii}{\sqrt{2}} & 0\\
                 \frac{\ii}{\sqrt{2}} &  0 & -\frac{\ii}{\sqrt{2}}\\
             0& \frac{\ii}{\sqrt{2}}&0
-                \end{bmatrix} \left<\psi\right|S_z\left|\psi\right>+\begin{bmatrix}
+                \end{bmatrix} \left<\psi\right|S_y\left|\psi\right>+\begin{bmatrix}
             1 & 0 & 0\\
         0 &  0 & 0\\
         0& 0&-1
@@ -247,92 +248,69 @@ $$\begin{aligned}
 Using the method in part (B), we can find the ground state $\left|\psi\right>$ and the mean field $h$:
 $$
 \left|\psi\right>=\begin{bmatrix}
-    0.500000 \\
-0.707107 \\
-0.500000
+    1.00 \\
+0.00 \\
+0.00
     \end{bmatrix}
 $$
 $$
 h=\begin{bmatrix}
-    0 & -1.41503 & 0 \\
-    -1.41503 &  0 & -1.41503 \\
-    0 &  -1.41503 & 0
+    -2.00116 & 0 & 0 \\
+    0 &  0 & 0 \\
+    0 &  0 & 2.00116
     \end{bmatrix}
 $$
 now we can diagnolize the Hamiltonian:
-$$E_{0}=-2.001158,\ E_{1}=0.00000,\ E_{2}=2.001158
+$$E_{0}=-2.00116,\ E_{1}=0.00000,\ E_{2}=2.00116
 $$
 $$\left|\psi_0\right>=\begin{bmatrix}
-    0.500000 \\
-0.707107 \\
-0.500000
+    1 \\
+0 \\
+0
     \end{bmatrix},\left|\psi_1\right>=\begin{bmatrix}
-       -0.707107 \\
-    0.000000 \\
-    0.707107
+       0 \\
+    1 \\
+    0
         \end{bmatrix},\left|\psi_2\right>=\begin{bmatrix}
-            0.500000 \\
-        -0.707107 \\
-        0.500000
+            0 \\
+            0 \\
+            1
             \end{bmatrix}
 $$
-with these numbers, we can get the transformed matrices for $S^x$, $S^y$, $S^z$:
-
+with these numbers, we can get the transformed matrices for $S^x$, $S^y$, $S^z$( because this is a easy problem, I will be using the exact answers. In real materails, onle numerical values are available):
 $$S^x_{mn}=\begin{bmatrix}
-    1.000000 & 0.000000 & 0.000000 \\
-    0.000000 &  0.000000 & 0.000000 \\
-    0.000000 &  0.000000 & -1.000000
+    0& \frac{1}{\sqrt{2}} & 0\\
+    \frac{1}{\sqrt{2}} &  0 & \frac{1}{\sqrt{2}}\\
+0& \frac{1}{\sqrt{2}}&0
     \end{bmatrix}$$$$
 S^y_{mn}=\begin{bmatrix}
-        0.000000 & -0.707107\ii & 0.000000 \\
-       0.707107\ii &  0.000000 & -0.707107\ii\\
-        0.000000 &  0.707107\ii & 0.000000
-        \end{bmatrix}$$ $$
+    0& -\frac{\ii}{\sqrt{2}} & 0\\
+    \frac{\ii}{\sqrt{2}} &  0 & -\frac{\ii}{\sqrt{2}}\\
+0& \frac{\ii}{\sqrt{2}}&0
+    \end{bmatrix}$$ $$
 S^z_{mn}=\begin{bmatrix}
-0.000000 & -0.707107 & 0.000000 \\
--0.707107 &  0.000000 & -0.707107 \\
-0.000000 &  -0.707107 & 0.000000
+1 & 0 & 0 \\
+0 &  0 & 0 \\
+0 &  0 & -1
 \end{bmatrix}
 $$
-Now the operators can be written in a series( since there is only one atom per unit cell, we will remove the $p$ index, only write as $b_{im}$):
-$$
-S_{i}^{x}\approx1.000000+1.000000\ b_{i1}b_{i1}^{\dagger}+2.000000\ b_{i2}b_{i2}^{\dagger}$$$$
-S_{i}^{y}\approx-0.707107\ii\ b_{i1}^{\dagger}+0.707107\ii\ b_{i1}-0.707107\ii\ b_{i1}^{\dagger}b_{i2}+0.707107\ii\ b_{i2}^{\dagger}b_{i1}$$$$
-S_{i}^{z}\approx-0.707107\ b_{i1}^{\dagger}-0.707107\ b_{i1}-0.707107\  b_{i1}^{\dagger}b_{i2}-0.707107\  b_{i2}^{\dagger}b_{i1}$$
+Now the operators can be written in a series( since there is only one atom per unit cell, we will remove the $p$ index, only write as $b_{im}$):$$
+S_{i}^{x}\approx\frac{1}{\sqrt{2}}\ b_{i1}^{\dagger}+\frac{1}{\sqrt{2}}\ b_{i1}+\frac{1}{\sqrt{2}}\  b_{i1}^{\dagger}b_{i2}+\frac{1}{\sqrt{2}}\  b_{i2}^{\dagger}b_{i1}$$$$
+S_{i}^{y}\approx\frac{\ii}{\sqrt{2}}\ b_{i1}^{\dagger}-\frac{\ii}{\sqrt{2}}\ b_{i1}-\frac{\ii}{\sqrt{2}}\ b_{i1}^{\dagger}b_{i2}+\frac{\ii}{\sqrt{2}}\ b_{i2}^{\dagger}b_{i1}$$$$
+S_{i}^{z}\approx1-b_{i1}b_{i1}^{\dagger}-2b_{i2}b_{i2}^{\dagger}$$
 \indent Comment: Notice even in this form, all spin operators keep Hermitian.\\
 \indent Now For the three interactions $S_{i}^x S_{i+1}^x$, $S_{i}^y S_{i+1}^y$, $S_{i}^z S_{i+1}^z$, we will show (only the quadratic terms)
 $$
 \begin{aligned}
-    S_{i}^x S_{i+1}^x &\approx1.000000\left(b_{i1}^{\dagger}b_{i1}+b_{(i+1)1}^{\dagger}b_{(i+1)1}\right)+2.000000\left(b_{i2}^{\dagger}b_{i2}+b_{(i+1)2}^{\dagger}b_{(i+1)2}\right)\\ &=\left[
+    S_{i}^x S_{i+1}^x &\approx\frac{1}{2}\left(b_{i1}^{\dagger}b_{(i+1)1}^{\dagger}+b_{i1}b_{(i+1)1}+b_{i1}b_{(i+1)1}^{\dagger}+b_{i1}^{\dagger}b_{(i+1)1}\right)\\ &=\left[
         b_{i1}^{\dagger} \ \ 
         b_{i2}^{\dagger}\  \ 
         b_{i1}\ \ 
         b_{i2}\right]
        \begin{bmatrix}
-            1.000000 & 0 & 0 & 0 \\
-           0 &  2.000000 & 0 &0 \\
-            0 &  0 & 1.000000 &0\\
-            0 & 0 & 0& 2.00000
-            \end{bmatrix}\begin{bmatrix}
-                b_{(i+1)1}  \\
-                b_{(i+1)2}  \\
-                b_{(i+1)1}^{\dagger}\\
-                b_{(i+1)2}^{\dagger}
-                \end{bmatrix}
-\end{aligned}
-$$
-There are constants, because $b_{(i+1)1}b_{(i+1)1}^{\dagger}=b_{(i+1)1}^{\dagger}b_{(i+1)1}+1$, but it is not written.
-$$
-\begin{aligned}
-    S_{i}^z S_{i+1}^z &\approx0.500000\left(b_{i1}^{\dagger}b_{(i+1)1}^{\dagger}+b_{i1}b_{(i+1)1}+b_{i1}b_{(i+1)1}^{\dagger}+b_{i1}^{\dagger}b_{(i+1)1}\right)\\ &=\left[
-        b_{i1}^{\dagger} \ \ 
-        b_{i2}^{\dagger}\  \ 
-        b_{i1}\ \ 
-        b_{i2}\right]
-       \begin{bmatrix}
-            0.500000 & 0 & 0.500000 & 0 \\
+            \frac{1}{2} & 0 & \frac{1}{2} & 0 \\
            0 &  0 & 0 &0 \\
-            0.500000 &  0 & 0.500000 &0\\
+           \frac{1}{2} &  0 & \frac{1}{2} &0\\
             0 & 0 & 0& 0
             \end{bmatrix}\begin{bmatrix}
                 b_{(i+1)1}  \\
@@ -342,6 +320,32 @@ $$
                 \end{bmatrix}
 \end{aligned}
 $$
+$$
+\begin{aligned}
+    S_{i}^y S_{i+1}^y &\approx0.500000\frac{1}{2}\left(-b_{i1}^{\dagger}b_{(i+1)1}^{\dagger}-b_{i1}b_{(i+1)1}+b_{i1}b_{(i+1)1}^{\dagger}+b_{i1}^{\dagger}b_{(i+1)1}\right)\\ &=\left[
+        b_{i1}^{\dagger} \ \ 
+        b_{i2}^{\dagger}\  \ 
+        b_{i1}\ \ 
+        b_{i2}\right]
+        \begin{bmatrix}
+            \frac{1}{2} & 0 & -\frac{1}{2} & 0 \\
+           0 &  0 & 0 &0 \\
+           -\frac{1}{2} &  0 & \frac{1}{2} &0\\
+            0 & 0 & 0& 0
+            \end{bmatrix}\begin{bmatrix}
+                b_{(i+1)1}  \\
+                b_{(i+1)2}  \\
+                b_{(i+1)1}^{\dagger}\\
+                b_{(i+1)2}^{\dagger}
+                \end{bmatrix}
+\end{aligned}
+$$
+$$
+\begin{aligned}
+    S_{i}^z S_{i+1}^z &\approx-\left(b_{i1}^{\dagger}b_{i1}+b_{(i+1)1}^{\dagger}b_{(i+1)1}\right)-2\left(b_{i2}^{\dagger}b_{i2}+b_{(i+1)2}^{\dagger}b_{(i+1)2}\right)
+\end{aligned}
+$$
+There are constants, because $b_{(i+1)1}b_{(i+1)1}^{\dagger}=b_{(i+1)1}^{\dagger}b_{(i+1)1}+1$, but it is not written. \\
 --------------------------------\\
 After the Hamiltonian is written, we will do Fourier transforms. Define:
 $$ \begin{aligned}
@@ -351,14 +355,14 @@ $$ \begin{aligned}
 where $A$ is the nomalizing factor which gives the commutation relation $\left[\hat{b}_{\bm{k}pm},\hat{b}_{\bm{k'}qn}^{\dagger}\right]=\delta_{\bm{k}\bm{k}'}\delta_{pq}\delta_{mn}$. Now the Hamiltonian can be written in the momentum space and a algorithm propose by Colpa could properly diagnolized this Hamiltonian. In the algorithm, the Hamiltonian is written as $\sum_{\bm{k}}\mathbf{X}^{\dagger}_{\bm{k}}\mathbf{H}_{\bm{k}}\mathbf{X}_{\bm{k}}$ where $\mathbf{X}_{\bm{k}}=\left(b_{\bm{k}11},\cdots,b_{\bm{k}1(d-1)},\cdots,b_{\bm{k}n(d-1))},b_{(-\bm{k})11}^{\dagger},\cdots,b_{(-\bm{k})n(d-1)}^{\dagger}\right)^{\mathsf{T}}$. It is very easy to get the energies. Difine a matrix:$$
 \mathbf{g}=\begin{bmatrix}
     \mathbf{1} & \mathbf{0}  \\
-    \mathbf{0} &  \mathbf{1}
+    \mathbf{0} &  -\mathbf{1}
     \end{bmatrix},
 $$
-where $\mathbf{1}$ means a identity matrix of dimension $n(d-1)$ and $\mathbf{0}$ means a zero matrix. To get the energies, solve the eigenvalues of matrix $\mathbf{H}.\mathbf{g}$. There will be $n(d-1)$ positive numbers and the othere negitive ones on the positive numbers times $-1$. The $n(d-1)$ numbers are the energies of excitations. After this, Plotting the numbers as with different $k$ will give you the dispersion.\\
+where $\mathbf{1}$ means an identity matrix of dimension $n(d-1)$ and $\mathbf{0}$ means a zero matrix. To get the energies, solve the eigenvalues of matrix $\mathbf{H}.\mathbf{g}$. There will be $n(d-1)$ positive numbers and the othere negitive ones on the positive numbers times $-1$. The $n(d-1)$ numbers are the energies of excitations. After this, Plotting the numbers as with different $k$ will give you the dispersion. \\
 There is another way to get the energies and get information of the transformation. The first step is to do Cholesky decomposition $\mathbf{H}=\mathbf{K}^{\dagger}\mathbf{K}$. This requires that $\mathbf{H}$ must be positive definite, otherwise is not decomposivable. If you do not get this, it means that you made a mistake. (needs to be finished) \\
 --------------------------------\\
-In example (a). We will first show the the Fourier transformation for $S_j^x S_{j+1}^x$(since i is used for imaginary number, we will change the index or unit cell to $j$):\\
-$$S_{j}^x S_{j+1}^x \approx1.000000\left(b_{j1}^{\dagger}b_{j1}+b_{(j+1)1}^{\dagger}b_{(j+1)1}\right)+2.000000\left(b_{j2}^{\dagger}b_{j2}+b_{(j+1)2}^{\dagger}b_{(j+1)2}\right)$$
+In example (a). We will first show the the Fourier transformation for $S_j^z S_{j+1}^z$(since i is used for imaginary number, we will change the index or unit cell to $j$):\\
+$$S_{j}^z S_{j+1}^z \approx-\left(b_{j1}^{\dagger}b_{j1}+b_{(j+1)1}^{\dagger}b_{(j+1)1}\right)-2\left(b_{j2}^{\dagger}b_{j2}+b_{(j+1)2}^{\dagger}b_{(j+1)2}\right)$$
 We have $$
 b_{km}=\frac{1}{\sqrt{A}}\sum_{j}b_{jm}\e^{-\ii (k j)}
 $$$$
@@ -378,17 +382,17 @@ $$\begin{aligned}
 &=\sum_{k}b_{k1}^{\dagger}b_{k1}
 \end{aligned}
 $$
-Now the $S_j^x S_{j+1}^x$ term is going to be$$\begin{aligned}
-& \indent \sum_j 1.000000\left(b_{j1}^{\dagger}b_{j1}+b_{(j+1))1}^{\dagger}b_{(j+1))1}\right)+2.000000\left(b_{j2}^{\dagger}b_{j2}+b_{(j+1))2}^{\dagger}b_{(j+1))2}\right)\\
-&= \sum_{k}2.000000b_{k1}^{\dagger}b_{k1}+4.000000b_{k2}^{\dagger}b_{k2}\\
-&=0.500000\left[
+Now the $S_j^z S_{j+1}^z$ term is going to be$$\begin{aligned}
+& \indent \sum_j -\left(b_{j1}^{\dagger}b_{j1}+b_{(j+1))1}^{\dagger}b_{(j+1))1}\right)-2\left(b_{j2}^{\dagger}b_{j2}+b_{(j+1))2}^{\dagger}b_{(j+1))2}\right)\\
+&= \sum_{k}-2b_{k1}^{\dagger}b_{k1}-4b_{k2}^{\dagger}b_{k2}\\
+&=\sum_k \left[
     b_{k1}^{\dagger} \ \ 
     b_{k2}^{\dagger}\  \ 
     b_{(-k)1}\ \ 
     b_{(-k))2}\right]
    \begin{bmatrix}
-        4 & 0 & 0 & 0 \\
-       0 &  8 & 0 &0 \\
+        2 & 0 & 0 & 0 \\
+       0 &  4 & 0 &0 \\
        0 &  0 & 0 &0\\
         0 & 0 & 0& 0
         \end{bmatrix}\begin{bmatrix}
@@ -399,14 +403,40 @@ Now the $S_j^x S_{j+1}^x$ term is going to be$$\begin{aligned}
             \end{bmatrix}
 \end{aligned}
 $$
-and the $S_j^z S_{j+1}^z$ term will be $$
+and the $S_j^x S_{j+1}^x$ term:
+$$\begin{aligned}
+    & \indent  0.500000\sum_{j}\left(-b_{j1}^{\dagger}b_{(j+1)1}^{\dagger}-b_{j1}b_{(j+1)1}+b_{j1}b_{(j+1)1}^{\dagger}+b_{j1}^{\dagger}b_{(j+1)1}\right)\\
+    &=\frac{0.500000}{A}\sum_{j}\sum_{k}\sum_{k'}\left(-b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{-\ii kj}\e^{-\ii k'(j+1)}-b_{k1}b_{k'1}\e^{\ii kj}\e^{\ii k'(j+1)}+b_{k1}b_{k'1}^{\dagger}\e^{\ii kj}\e^{-\ii k'(j+1)}+b_{k1}^{\dagger}b_{k'1}\e^{-\ii kj}\e^{\ii k'(j+1)}\right)\\
+    &=\frac{0.500000}{A}\sum_{k}\sum_{k'}\left(-b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{-\ii k'}\sum_j \e^{-\ii (k+k')j}-b_{k1}b_{k'}\e^{\ii k'}\sum_j \e^{\ii (k+k')j}+b_{k1}b_{k'1}^{\dagger}\e^{-\ii k'}\sum_j \e^{\ii (k-k')j}+b_{k1}^{\dagger}b_{k'1}\e^{\ii k'}\sum_j \e^{-\ii (k+k')j}\right)\\
+    &=0.500000\sum_k\sum_{k'}\left(-b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{-\ii k'}\delta_{-k,k'}-b_{k1}b_{k'1}\e^{\ii k'}\delta_{-k,k'}+b_{k1}b_{k'1}^{\dagger}\e^{-\ii k'}\delta_{k,k'}+b_{k1}^{\dagger}b_{k'1}\e^{\ii k'}\delta_{k,k'}\right)\\
+    &=0.500000\sum_k\sum_{k'}\left(-b_{k1}^{\dagger}b_{(-k)1}^{\dagger}\e^{\ii k}-b_{k1}b_{(-k)1}\e^{-\ii k}+b_{k1}b_{k1}^{\dagger}\e^{-\ii k}+b_{k1}^{\dagger}b_{k1}\e^{\ii k}\right)\\
+    &=0.500000\sum_k \left[
+      b_{k1}^{\dagger} \ \ 
+      b_{k2}^{\dagger}\  \ 
+      b_{(-k)1}\ \ 
+      b_{(-k))2}\right]
+     \begin{bmatrix}
+          -\e^{\ii k} & 0 & \e^{-\ii k} & 0 \\
+         0 &  0 & 0 &0 \\
+         \e^{\ii k} &  0 & -\e^{-\ii k} &0\\
+          0 & 0 & 0& 0
+          \end{bmatrix}\begin{bmatrix}
+              b_{k1}  \\
+              b_{k2}  \\
+              b_{(-k)1}^{\dagger}\\
+              b_{(-k)2}^{\dagger}
+              \end{bmatrix}
+  \end{aligned}
+  $$
+  and the $S_j^z S_{j+1}^z$ term:
+  $$
 \begin{aligned}
   & \indent  0.500000\sum_{j}\left(b_{j1}^{\dagger}b_{(j+1)1}^{\dagger}+b_{j1}b_{(j+1)1}+b_{j1}b_{(j+1)1}^{\dagger}+b_{j1}^{\dagger}b_{(j+1)1}\right)\\
   &=\frac{0.500000}{A}\sum_{j}\sum_{k}\sum_{k'}\left(b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{-\ii kj}\e^{-\ii k'(j+1)}+b_{k1}b_{k'1}\e^{\ii kj}\e^{\ii k'(j+1)}+b_{k1}b_{k'1}^{\dagger}\e^{\ii kj}\e^{-\ii k'(j+1)}+b_{k1}^{\dagger}b_{k'1}\e^{-\ii kj}\e^{\ii k'(j+1)}\right)\\
   &=\frac{0.500000}{A}\sum_{k}\sum_{k'}\left(b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{-\ii k'}\sum_j \e^{-\ii (k+k')j}+b_{k1}b_{k'}\e^{\ii k'}\sum_j \e^{\ii (k+k')j}+b_{k1}b_{k'1}^{\dagger}\e^{-\ii k'}\sum_j \e^{\ii (k-k')j}+b_{k1}^{\dagger}b_{k'1}\e^{\ii k'}\sum_j \e^{-\ii (k+k')j}\right)\\
   &=0.500000\sum_k\sum_{k'}\left(b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{-\ii k'}\delta_{-k,k'}+b_{k1}b_{k'1}\e^{\ii k'}\delta_{-k,k'}+b_{k1}b_{k'1}^{\dagger}\e^{-\ii k'}\delta_{k,k'}+b_{k1}^{\dagger}b_{k'1}\e^{\ii k'}\delta_{k,k'}\right)\\
   &=0.500000\sum_k\sum_{k'}\left(b_{k1}^{\dagger}b_{(-k)1}^{\dagger}\e^{\ii k}+b_{k1}b_{(-k)1}\e^{-\ii k}+b_{k1}b_{k1}^{\dagger}\e^{-\ii k}+b_{k1}^{\dagger}b_{k1}\e^{\ii k}\right)\\
-  &=0.500000\left[
+  &=0.500000\sum_k \left[
     b_{k1}^{\dagger} \ \ 
     b_{k2}^{\dagger}\  \ 
     b_{(-k)1}\ \ 
@@ -424,5 +454,7 @@ and the $S_j^z S_{j+1}^z$ term will be $$
             \end{bmatrix}
 \end{aligned}
 $$
+Now we can write down the full Hamiltonian:
+$$H=\sum_{k}$$
 --------------------------------\\
 \end{document}
