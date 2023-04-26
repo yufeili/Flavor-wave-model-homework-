@@ -223,10 +223,10 @@ Now for each term in the interaction list, you can apply this expansion and get 
 and $\mathbf{H}_{\bm{r},\bm{r}'}$ is a $2N(d-1)\times 2N(d-1)$ matrix.\\
 ---------------------------------\\
  For example, in example (a), Let's put in numbers $S=1$, $g=2$ and $J=\SI{1}{\milli\electronvolt}$
-and $\bm{B}=-\SI{0.01}{\tesla}\ \hat{x}.$ We can write down the mean field(in meV):
+and $\bm{B}=-\SI{0.08639}{\tesla}\ \hat{x}.$ We can write down the mean field(in meV):
 $$\begin{aligned}
     h&=  g\mu_{\mathrm{B}} B^z S^z-2J S^z \left<\psi\right|S_z\left|\psi\right>\\
-    & = 2\times 0.05788\times 0.01\times  \begin{bmatrix}
+    & = 2\times 0.05788\times 0.08639\times  \begin{bmatrix}
         1 & 0 & 0\\
        0 &  0 & 0\\
         0& 0 & -1
@@ -255,13 +255,13 @@ $$
 $$
 $$
 h=\begin{bmatrix}
-    -2.00116 & 0 & 0 \\
+    -2.02 & 0 & 0 \\
     0 &  0 & 0 \\
-    0 &  0 & 2.00116
+    0 &  0 & 2.02
     \end{bmatrix}
 $$
 now we can diagnolize the Hamiltonian:
-$$E_{0}=-2.00116,\ E_{1}=0.00000,\ E_{2}=2.00116
+$$E_{0}=-2.02,\ E_{1}=0.00000,\ E_{2}=2.02
 $$
 $$\left|\psi_0\right>=\begin{bmatrix}
     1 \\
@@ -294,7 +294,12 @@ S^z_{mn}=\begin{bmatrix}
 0 &  0 & -1
 \end{bmatrix}
 $$
-Now the operators can be written in a series( since there is only one atom per unit cell, we will remove the $p$ index, only write as $b_{im}$):$$
+Now the operators can be written in a series However, we will rewrite the Hamiltonian so that it looks more symetric: \\
+$$
+H=\sum_{i}g\mu_{\mathrm{B}}(B^x S^x +B^y S^y+B^z S^z)-\frac{J}{2}(S_{i}^x S_{i+1}^x+S_{i}^y S_{i+1}^y+S_{i}^z S_{i+1}^z+S_{i-1}^x S_{i}^x+S_{i-1}^y S_{i}^y+S_{i-1}^z S_{i}^z)$$
+Since there is only one atom per unit cell, we will remove the $p$ index, only write as $b_{im}$:
+%$$S_{j}^z S_{j+1}^z \approx-\left(b_{j1}^{\dagger}b_{j1}+b_{(j+1)1}^{\dagger}b_{(j+1)1}\right)-2\left(b_{j2}^{\dagger}b_{j2}+b_{(j+1)2}^{\dagger}b_{(j+1)2}\right)$$
+$$
 S_{i}^{x}\approx\frac{1}{\sqrt{2}}\ b_{i1}^{\dagger}+\frac{1}{\sqrt{2}}\ b_{i1}+\frac{1}{\sqrt{2}}\  b_{i1}^{\dagger}b_{i2}+\frac{1}{\sqrt{2}}\  b_{i2}^{\dagger}b_{i1}$$$$
 S_{i}^{y}\approx\frac{\ii}{\sqrt{2}}\ b_{i1}^{\dagger}-\frac{\ii}{\sqrt{2}}\ b_{i1}-\frac{\ii}{\sqrt{2}}\ b_{i1}^{\dagger}b_{i2}+\frac{\ii}{\sqrt{2}}\ b_{i2}^{\dagger}b_{i1}$$$$
 S_{i}^{z}\approx1-b_{i1}b_{i1}^{\dagger}-2b_{i2}b_{i2}^{\dagger}$$
@@ -341,9 +346,16 @@ $$
 \end{aligned}
 $$
 $$
-\begin{aligned}
-    S_{i}^z S_{i+1}^z &\approx-\left(b_{i1}^{\dagger}b_{i1}+b_{(i+1)1}^{\dagger}b_{(i+1)1}\right)-2\left(b_{i2}^{\dagger}b_{i2}+b_{(i+1)2}^{\dagger}b_{(i+1)2}\right)
-\end{aligned}
+    S_{i}^z S_{i+1}^z \approx-\left(b_{i1}^{\dagger}b_{i1}+b_{(i+1)1}^{\dagger}b_{(i+1)1}\right)-2\left(b_{i2}^{\dagger}b_{i2}+b_{(i+1)2}^{\dagger}b_{(i+1)2}\right)
+$$
+And $$
+S_{i-1}^x S_{i}^x  \approx\frac{1}{2}\left(b_{(i-1)1}^{\dagger}b_{i1}^{\dagger}+b_{(i-1)1}b_{i1}+b_{(i-1)1}b_{i1}^{\dagger}+b_{(i-1)1}^{\dagger}b_{i1}\right)
+$$
+$$
+S_{i-1}^y S_{i}^y \approx\frac{1}{2}\left(-b_{(i-1)1}^{\dagger}b_{i1}^{\dagger}-b_{(i-1)1}b_{i1}+b_{(i-1)1}b_{i1}^{\dagger}+b_{(i-1)1}^{\dagger}b_{i1}\right)
+$$
+$$
+    S_{i-1}^z S_{i}^z \approx-\left(b_{(i-1)1}^{\dagger}b_{(i-1)1}+b_{i1}^{\dagger}b_{i1}\right)-2\left(b_{(i-1)2}^{\dagger}b_{(i-1)2}+b_{i2}^{\dagger}b_{i2}\right)
 $$
 There are constants, because $b_{(i+1)1}b_{(i+1)1}^{\dagger}=b_{(i+1)1}^{\dagger}b_{(i+1)1}+1$, but it is not written. Notice how the $S_{i}^z S_{i+1}^z$  term is different from othes.\\
 --------------------------------\\
@@ -352,17 +364,15 @@ $$ \begin{aligned}
     \hat{b}_{\bm{k}pm}=\frac{1}{\sqrt{A}}\sum_{\bm{r}}\hat{b}_{\bm{r}pm}\e^{-\ii\bm{k}\cdot\bm{r}} \\
     \hat{b}_{\bm{k}pm}^{\dagger}=\frac{1}{\sqrt{A}}\sum_{\bm{r}}\hat{b}_{\bm{r}pm}^{\dagger}\e^{\ii\bm{k}\cdot\bm{r}}
     \end{aligned} $$
-where $A$ is the nomalizing factor which gives the commutation relation $\left[\hat{b}_{\bm{k}pm},\hat{b}_{\bm{k'}qn}^{\dagger}\right]=\delta_{\bm{k}\bm{k}'}\delta_{pq}\delta_{mn}$. Now the Hamiltonian can be written in the momentum space and a algorithm propose by Colpa could properly diagnolized this Hamiltonian. In the algorithm, the Hamiltonian is written as $\sum_{\bm{k}}\mathbf{X}^{\dagger}_{\bm{k}}\mathbf{H}_{\bm{k}}\mathbf{X}_{\bm{k}}$ where $\mathbf{X}_{\bm{k}}=\left(b_{\bm{k}11},\cdots,b_{\bm{k}1(d-1)},\cdots,b_{\bm{k}n(d-1))},b_{(-\bm{k})11}^{\dagger},\cdots,b_{(-\bm{k})n(d-1)}^{\dagger}\right)^{\mathsf{T}}$. It is very easy to get the energies. Difine a matrix:$$
-\mathbf{g}=\begin{bmatrix}
-    \mathbf{1} & \mathbf{0}  \\
-    \mathbf{0} &  -\mathbf{1}
-    \end{bmatrix},
-$$
-where $\mathbf{1}$ means an identity matrix of dimension $n(d-1)$ and $\mathbf{0}$ means a zero matrix. To get the energies, solve the eigenvalues of matrix $\mathbf{H}.\mathbf{g}$. There will be $n(d-1)$ positive numbers and the othere negitive ones on the positive numbers times $-1$. The $n(d-1)$ numbers are the energies of excitations. After this, Plotting the numbers as with different $k$ will give you the dispersion. \\
-There is another way to get the energies and get information of the transformation. The first step is to do Cholesky decomposition $\mathbf{H}=\mathbf{K}^{\dagger}\mathbf{K}$. This requires that $\mathbf{H}$ must be positive definite, otherwise is not decomposivable. If you do not get this, it means that you made a mistake. (needs to be finished) \\
+and inverse Fourier transforms:
+$$ \begin{aligned}
+    \hat{b}_{\bm{r}pm}=\frac{1}{\sqrt{A}}\sum_{\bm{k}}\hat{b}_{\bm{k}pm}\e^{\ii\bm{k}\cdot\bm{r}} \\
+    \hat{b}_{\bm{r}pm}^{\dagger}=\frac{1}{\sqrt{A}}\sum_{\bm{k}}\hat{b}_{\bm{k}pm}^{\dagger}\e^{-\ii\bm{k}\cdot\bm{r}}
+    \end{aligned} $$
+where $A$ is the nomalizing factor which gives the commutation relation $\left[\hat{b}_{\bm{k}pm},\hat{b}_{\bm{k'}qn}^{\dagger}\right]=\delta_{\bm{k}\bm{k}'}\delta_{pq}\delta_{mn}$. Now the Hamiltonian can be written in the momentum space.
 --------------------------------\\
-In example (a). We will first show the the Fourier transformation for $S_j^z S_{j+1}^z$(since i is used for imaginary number, we will change the index or unit cell to $j$):\\
-$$S_{j}^z S_{j+1}^z \approx-\left(b_{j1}^{\dagger}b_{j1}+b_{(j+1)1}^{\dagger}b_{(j+1)1}\right)-2\left(b_{j2}^{\dagger}b_{j2}+b_{(j+1)2}^{\dagger}b_{(j+1)2}\right)$$
+In example (a). 
+We will first show the the Fourier transformation for $S_j^z S_{j+1}^z$(since i is used for imaginary number, we will change the index or unit cell to $j$).
 We have $$
 b_{km}=\frac{1}{\sqrt{A}}\sum_{j}b_{jm}\e^{-\ii k j}
 $$$$
@@ -383,7 +393,7 @@ $$\begin{aligned}
 \end{aligned}
 $$
 Now the $S_j^z S_{j+1}^z$ term is going to be$$\begin{aligned}
-& \indent \sum_j -\left(b_{j1}^{\dagger}b_{j1}+b_{(j+1))1}^{\dagger}b_{(j+1))1}\right)-2\left(b_{j2}^{\dagger}b_{j2}+b_{(j+1))2}^{\dagger}b_{(j+1))2}\right)\\
+& \indent \sum_j -\left(b_{j1}^{\dagger}b_{j1}+b_{(j+1)1}^{\dagger}b_{(j+1)1}\right)-2\left(b_{j2}^{\dagger}b_{j2}+b_{(j+1)2}^{\dagger}b_{(j+1)2}\right)\\
 &= \sum_{k}-2b_{k1}^{\dagger}b_{k1}-4b_{k2}^{\dagger}b_{k2}\\
 &=\sum_k \left[
     b_{k1}^{\dagger} \ \ 
@@ -403,7 +413,27 @@ Now the $S_j^z S_{j+1}^z$ term is going to be$$\begin{aligned}
             \end{bmatrix}
 \end{aligned}
 $$
-Notice that term doesn't change with momentum $k$.\\
+Notice that term doesn't change with momentum $k$. Just substute $k$ by $-k$, we can get $$\begin{aligned}
+    & \indent \sum_j -\left(b_{(j-1)1}^{\dagger}b_{(j-1)1}+b_{j1}^{\dagger}b_{j1}\right)-2\left(b_{(j-1)2}^{\dagger}b_{(j-1)2}+b_{j2}^{\dagger}b_{j2}\right)\\
+    &= \sum_{k}-2b_{(-k)1}^{\dagger}b_{(-k)1}-4b_{(-k)2}^{\dagger}b_{(-k)2}\\
+    &=\sum_k \left[
+        b_{k1}^{\dagger} \ \ 
+        b_{k2}^{\dagger}\  \ 
+        b_{(-k)1}\ \ 
+        b_{(-k))2}\right]
+       \begin{bmatrix}
+            0 & 0 & 0 & 0 \\
+           0 &  0 & 0 &0 \\
+           0 &  0 & 2 &0\\
+            0 & 0 & 0& 4
+            \end{bmatrix}\begin{bmatrix}
+                b_{k1}  \\
+                b_{k2}  \\
+                b_{(-k)1}^{\dagger}\\
+                b_{(-k)2}^{\dagger}
+                \end{bmatrix}
+    \end{aligned}
+    $$\\
 And the $S_j^x S_{j+1}^x$ term:
 $$\begin{aligned}
     & \indent  \frac{1}{2}\sum_{j}\left(b_{j1}^{\dagger}b_{(j+1)1}^{\dagger}+b_{j1}b_{(j+1)1}+b_{j1}b_{(j+1)1}^{\dagger}+b_{j1}^{\dagger}b_{(j+1)1}\right)\\
@@ -455,29 +485,81 @@ $$\begin{aligned}
             \end{bmatrix}
 \end{aligned}
 $$
+With the same method, you can also get the transformed term of $S_{(j-1)}^x S_j^x$ and $S_{(j-1)}^y S_j^y$:
+$$\begin{aligned}
+    & \indent  \frac{1}{2}\sum_{j}\left(b_{(j-1)1}^{\dagger}b_{j1}^{\dagger}+b_{(j-1)1}b_{j1}+b_{(j-1)1}b_{j1}^{\dagger}+b_{(j-1)1}^{\dagger}b_{j1}\right)\\
+    &= \frac{1}{2}\sum_{j}\left(b_{j1}^{\dagger}b_{(j-1)1}^{\dagger}+b_{j1}b_{(j-1)1}+b_{j1}b_{(j-1)1}^{\dagger}+b_{j1}^{\dagger}b_{(j-1)1}\right)\\
+    &=\frac{1}{2A}\sum_{j}\sum_{k}\sum_{k'}\left(b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{-\ii kj}\e^{-\ii k'(j-1)}+b_{k1}b_{k'1}\e^{\ii kj}\e^{\ii k'(j-1)}+b_{k1}b_{k'1}^{\dagger}\e^{\ii kj}\e^{-\ii k'(j-1)}+b_{k1}^{\dagger}b_{k'1}\e^{-\ii kj}\e^{\ii k'(j-1)}\right)\\
+    &=\frac{1}{2A}\sum_{k}\sum_{k'}\left(b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{\ii k'}\sum_j \e^{-\ii (k+k')j}+b_{k1}b_{k'}\e^{-\ii k'}\sum_j \e^{\ii (k+k')j}+b_{k1}b_{k'1}^{\dagger}\e^{\ii k'}\sum_j \e^{\ii (k-k')j}+b_{k1}^{\dagger}b_{k'1}\e^{-\ii k'}\sum_j \e^{-\ii (k+k')j}\right)\\
+    &=\frac{1}{2}\sum_k\sum_{k'}\left(b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{\ii k'}\delta_{-k,k'}+b_{k1}b_{k'1}\e^{-\ii k'}\delta_{-k,k'}+b_{k1}b_{k'1}^{\dagger}\e^{\ii k'}\delta_{k,k'}+b_{k1}^{\dagger}b_{k'1}\e^{-\ii k'}\delta_{k,k'}\right)\\
+    &=\frac{1}{2}\sum_k\sum_{k'}\left(b_{k1}^{\dagger}b_{(-k)1}^{\dagger}\e^{-\ii k}+b_{k1}b_{(-k)1}\e^{\ii k}+b_{k1}b_{k1}^{\dagger}\e^{\ii k}+b_{k1}^{\dagger}b_{k1}\e^{-\ii k}\right)\\
+    &=\frac{1}{2}\sum_k \left[
+      b_{k1}^{\dagger} \ \ 
+      b_{k2}^{\dagger}\  \ 
+      b_{(-k)1}\ \ 
+      b_{(-k))2}\right]
+     \begin{bmatrix}
+          \e^{-\ii k} & 0 & \e^{-\ii k} & 0 \\
+         0 &  0 & 0 &0 \\
+         \e^{\ii k} &  0 & \e^{\ii k} &0\\
+          0 & 0 & 0& 0
+          \end{bmatrix}\begin{bmatrix}
+              b_{k1}  \\
+              b_{k2}  \\
+              b_{(-k)1}^{\dagger}\\
+              b_{(-k)2}^{\dagger}
+              \end{bmatrix}
+  \end{aligned}
+  $$
+And
+$$\begin{aligned}
+    & \indent  \frac{1}{2}\sum_{j}\left(-b_{(j-1)1}^{\dagger}b_{j1}^{\dagger}-b_{(j-1)1}b_{j1}+b_{(j-1)1}b_{j1}^{\dagger}+b_{(j-1)1}^{\dagger}b_{j1}\right)\\
+    &= \frac{1}{2}\sum_{j}\left(-b_{j1}^{\dagger}b_{(j-1)1}^{\dagger}-b_{j1}b_{(j-1)1}+b_{j1}b_{(j-1)1}^{\dagger}+b_{j1}^{\dagger}b_{(j-1)1}\right)\\
+    &=\frac{1}{2A}\sum_{j}\sum_{k}\sum_{k'}\left(-b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{-\ii kj}\e^{-\ii k'(j-1)}-b_{k1}b_{k'1}\e^{\ii kj}\e^{\ii k'(j-1)}+b_{k1}b_{k'1}^{\dagger}\e^{\ii kj}\e^{-\ii k'(j-1)}+b_{k1}^{\dagger}b_{k'1}\e^{-\ii kj}\e^{\ii k'(j-1)}\right)\\
+    &=\frac{1}{2A}\sum_{k}\sum_{k'}\left(-b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{\ii k'}\sum_j \e^{-\ii (k+k')j}-b_{k1}b_{k'}\e^{-\ii k'}\sum_j \e^{\ii (k+k')j}+b_{k1}b_{k'1}^{\dagger}\e^{\ii k'}\sum_j \e^{\ii (k-k')j}+b_{k1}^{\dagger}b_{k'1}\e^{-\ii k'}\sum_j \e^{-\ii (k+k')j}\right)\\
+    &=\frac{1}{2}\sum_k\sum_{k'}\left(-b_{k1}^{\dagger}b_{k'1}^{\dagger}\e^{\ii k'}\delta_{-k,k'}-b_{k1}b_{k'1}\e^{-\ii k'}\delta_{-k,k'}+b_{k1}b_{k'1}^{\dagger}\e^{\ii k'}\delta_{k,k'}+b_{k1}^{\dagger}b_{k'1}\e^{-\ii k'}\delta_{k,k'}\right)\\
+    &=\frac{1}{2}\sum_k\sum_{k'}\left(-b_{k1}^{\dagger}b_{(-k)1}^{\dagger}\e^{-\ii k}-b_{k1}b_{(-k)1}\e^{\ii k}+b_{k1}b_{k1}^{\dagger}\e^{\ii k}+b_{k1}^{\dagger}b_{k1}\e^{-\ii k}\right)\\
+    &=\frac{1}{2}\sum_k \left[
+      b_{k1}^{\dagger} \ \ 
+      b_{k2}^{\dagger}\  \ 
+      b_{(-k)1}\ \ 
+      b_{(-k))2}\right]
+     \begin{bmatrix}
+          \e^{-\ii k} & 0 & -\e^{-\ii k} & 0 \\
+         0 &  0 & 0 &0 \\
+         -\e^{\ii k} &  0 & \e^{\ii k} &0\\
+          0 & 0 & 0& 0
+          \end{bmatrix}\begin{bmatrix}
+              b_{k1}  \\
+              b_{k2}  \\
+              b_{(-k)1}^{\dagger}\\
+              b_{(-k)2}^{\dagger}
+              \end{bmatrix}
+  \end{aligned}
+  $$
 The local mean field Hamiltonian $$
 h=\begin{bmatrix}
-    -2.00116 & 0 & 0 \\
+    -2.02 & 0 & 0 \\
    0 &  0 & 0  \\
-  0 &  0 & 2.00116 \\
+  0 &  0 & 2.02 \\
     \end{bmatrix}
 $$
 and the bosonic operator form is:$$
-h_{j}\approx-2.00116+2.00116\ b_{j1}}^{\dagger}b_{j1}+4.00332\ b_{j2}^{\dagger}b_{j2}
+h_{j}\approx-2.02+2.02\ b_{j1}^{\dagger}b_{j1}+4.04\ b_{j2}^{\dagger}b_{j2}
 $$
 And transform this into the momentum space:$$
 \begin{aligned}
     &\indent \sum_j  h_j\\
-    &=\sum _j -2.00116+2.00116\ b_{j1}^{\dagger}b_{j1}+4.00332\ b_{j2}^{\dagger}b_{j2}\\
-    &=\sum_{k}+2.00116b_{k1}^{\dagger}b_{k1}+4.00332b_{k2}^{\dagger}b_{k2} \indent \text{(constant ignored)}\\
+    &=\sum _j -2.02+2.02\ b_{j1}^{\dagger}b_{j1}+4.04\ b_{j2}^{\dagger}b_{j2}\\
+    &=\sum_{k}+2.02b_{k1}^{\dagger}b_{k1}+4.04b_{k2}^{\dagger}b_{k2} \indent \text{(constant ignored)}\\
     &=\sum_k \left[
         b_{k1}^{\dagger} \ \ 
         b_{k2}^{\dagger}\  \ 
         b_{(-k)1}\ \ 
         b_{(-k))2}\right]
        \begin{bmatrix}
-        2.00116 & 0 & 0 & 0 \\
-           0 &  4.00232 & 0 &0 \\
+        2.02 & 0 & 0 & 0 \\
+           0 &  4.04 & 0 &0 \\
            0 &  0 & 0 &0\\
             0 & 0 & 0& 0
             \end{bmatrix}\begin{bmatrix}
@@ -488,22 +570,114 @@ And transform this into the momentum space:$$
                 \end{bmatrix}
 \end{aligned}
 $$
-Now summing up all the terms, and remember that there is a coefficient $-J=-1$ in front of the three terms $S_j^x S_{j+1}^x$, $S_j^y S_{j+1}^y$ and $S_j^z S_{j+1}^\z$. We can get the Hamiltonian in the momentum space:
-$$H=\sum_k \left[
-    b_{k1}^{\dagger} \ \ 
-    b_{k2}^{\dagger}\  \ 
-    b_{(-k)1}\ \ 
-    b_{(-k))2}\right]
-   \begin{bmatrix}
-    2.00116 & 0 & 0 & 0 \\
-       0 &  4.00232 & 0 &0 \\
-       0 &  0 & 0 &0\\
-        0 & 0 & 0& 0
-        \end{bmatrix}\begin{bmatrix}
+Now summing up all the terms, and remember that there is a coefficient $-\frac{J}{2}=-\frac{1}{2}$ in front of the six terms. We can get the Hamiltonian in the momentum space:
+$$
+\begin{aligned}
+    H &= \sum_k \begin{bmatrix}
+            b_{k1}^{\dagger}  \\
+            b_{k2}^{\dagger}  \\
+            b_{(-k)1}\\
+            b_{(-k)2}
+            \end{bmatrix}^{\mathsf{T}}
+    \left(
+        \underbrace{\begin{bmatrix}
+            2.02 & 0 & 0 & 0 \\
+            0 &  4.04 & 0 &0 \\
+            0 &  0 & 0 &0\\
+            0 & 0 & 0& 0
+        \end{bmatrix}}_{h_j}
+        \underbrace{-\frac{1}{2}\begin{bmatrix}
+            2 & 0 & 0 & 0 \\
+            0 &  4 & 0 &0 \\
+            0 &  0 & 0 &0\\
+            0 & 0 & 0& 0
+         \end{bmatrix}}_{-\frac{J}{2}S_{j}^zS_{j+1}^z}
+         \underbrace{-\frac{1}{4}\begin{bmatrix}
+            \e^{\ii k} & 0 & -\e^{\ii k} & 0 \\
+            0 &  0& 0 &0 \\
+            -\e^{\ii k} &  0 & \e^{\ii k} &0\\
+            0 & 0 & 0& 0
+        \end{bmatrix}}_{-\frac{J}{2}S_{j}^xS_{j+1}^x}
+        \underbrace{-\frac{1}{4}\begin{bmatrix}
+            \e^{\ii k} & 0 & \e^{\ii k} & 0 \\
+            0 & 0 & 0 &0 \\
+            \e^{\ii k} &  0 & \e^{\ii k} &0\\
+            0 & 0 & 0& 0
+        \end{bmatrix}}_{-\frac{J}{2}S_{j}^yS_{j+1}^y}\right.\\
+        &\indent \indent \indent \indent \indent \indent \indent \indent \indent \indent \indent \indent \left.
+            \underbrace{-\frac{1}{2}\begin{bmatrix}
+                2 & 0 & 0 & 0 \\
+                0 &  4 & 0 &0 \\
+                0 &  0 & 0 &0\\
+                0 & 0 & 0& 0
+             \end{bmatrix}}_{-\frac{J}{2}S_{j}^zS_{j-1}^z}
+             \underbrace{-\frac{1}{4}\begin{bmatrix}
+                \e^{\ii k} & 0 & -\e^{\ii k} & 0 \\
+                0 &  0& 0 &0 \\
+                -\e^{\ii k} &  0 & \e^{\ii k} &0\\
+                0 & 0 & 0& 0
+            \end{bmatrix}}_{-\frac{J}{2}S_{j}^xS_{j-1}^x}
+            \underbrace{-\frac{1}{4}\begin{bmatrix}
+                \e^{\ii k} & 0 & \e^{\ii k} & 0 \\
+                0 & 0 & 0 &0 \\
+                \e^{\ii k} &  0 & \e^{\ii k} &0\\
+                0 & 0 & 0& 0
+            \end{bmatrix}}_{-\frac{J}{2}S_{j}^yS_{j-1}^y}
+        \right)\begin{bmatrix}
             b_{k1}  \\
             b_{k2}  \\
             b_{(-k)1}^{\dagger}\\
             b_{(-k)2}^{\dagger}
-            \end{bmatrix}$$
+            \end{bmatrix}\\
+    &=
+\end{aligned}
+$$
 --------------------------------\\
+However this is not going to work. Since in the Fourier transforming step, you can use equation $\hat{b}_{\bm{r}pm}=\frac{1}{\sqrt{A}}\sum_{\bm{k}}\hat{b}_{\bm{k}pm}\e^{\ii\bm{k}\cdot\bm{r}}$, but you can also use equation $\hat{b}_{\bm{r}pm}=\frac{1}{\sqrt{A}}\sum_{\bm{k}}\hat{b}_{(-\bm{k})pm}\e^{-\ii\bm{k}\cdot\bm{r}}$ by substuting $\bm{k}$ with $-\bm{k}$ which means that :
+$$
+\begin{aligned}
+   &\indent\sum_k f(k)b_{kpm}^{\dagger}b_{kqn}\\
+ &=\sum_{-k} f(-k)b_{(-k)pm}^{\dagger}b_{(-k)qn}\indent \text{(replace $k$ by $-k$)}\\
+   &=\sum_{k} f(-k)b_{(-k)qn}b_{(-k)pm}^{\dagger}\indent \text{(because we are summing over all $k$, we can change the range of summation)}    \\
+   \text{and}\\
+   &\indent\sum_k f(k)b_{kpm}^{\dagger}b_{(-k)qn}^{\dagger}\\
+    &=\sum_{-k} f(-k)b_{(-k)pm}^{\dagger}b_{kqn}^{\dagger}\\
+   &=\sum_{k} f(-k)b_{kqn}^{\dagger}b_{(-k)pm}^{\dagger}     
+\end{aligned}
+$$
+which means that if the Hamiltonian is in form$$
+H=\sum_{k}\mathbf{X}^{\dagger}_{k}\begin{bmatrix}
+    \mathbf{A}(k) & \mathbf{B}(k) \\
+    \mathbf{C}(k) & \mathbf{D}(k) 
+\end{bmatrix}\mathbf{X}_{k}
+$$
+We can rewrite the Hamiltonian as
+$$
+H=\sum_{k}\mathbf{X}^{\dagger}_{k}\begin{bmatrix}
+    \mathbf{D}^{\mathsf{T}}(-k) & \mathbf{C}^{\mathsf{T}}(-k) \\
+    \mathbf{B}^{\mathsf{T}}(-k) & \mathbf{A}^{\mathsf{T}}(-k) 
+\end{bmatrix}\mathbf{X}_{k}
+$$
+Since we know the only form for the coefficient $f(r)$ is $f(r)\e^{\ii \bm{k}\cdot \bm{r}}$, this leads to that $$
+f(-k)=\left(f(k)\right)^*
+$$
+which means the Hamiltonian can be written as 
+$$
+H=\sum_{k}\mathbf{X}^{\dagger}_{k}\begin{bmatrix}
+    \mathbf{D}^{\dagger} & \mathbf{C}^{\dagger} \\
+    \mathbf{B}^{\dagger} & \mathbf{A}^{\dagger}
+\end{bmatrix}\mathbf{X}_{k}
+$$
+This simplifies the problem a lot. Whenever you have a Hamiltonian in form $H=\sum_{\bm{k}}\mathbf{X}^{\dagger}_{\bm{k}}\mathbf{H}_{\bm{k}}\mathbf{X}_{\bm{k}}$, you can always rewrite the Hamiltonian as $H=\sum_{\bm{k}}\mathbf{X}^{\dagger}_{\bm{k}}\mathbf{H}_{\bm{k}}^{\dagger}\mathbf{X}_{\bm{k}}$. Since the Hamiltoian must be Hermitian, we will rewrite is as $H=\sum_{\bm{k}}\mathbf{X}^{\dagger}_{\bm{k}}\left(\mathbf{H}_{\bm{k}}^{\dagger}+\mathbf{H}_{\bm{k}}\right)\mathbf{X}_{\bm{k}}$. Now we will call the new matrix $\mathbf{H}_{\bm{k}}$ and we know this matrix is always a Hermitian matrix. You may think this will multiply the Hamiltonian by, however, in fact, the modified Hamiltonian is the correct Hamiltonian. This could be tested with a problem of no coupling between atoms but with coupling to external nagbetic field. \\
+--------------------------------\\
+In example (a)\\
+--------------------------------\\
+and a algorithm propose by Colpa could properly diagnolized this Hamiltonian. In the algorithm, the Hamiltonian is written as $\sum_{\bm{k}}\mathbf{X}^{\dagger}_{\bm{k}}\mathbf{H}_{\bm{k}}\mathbf{X}_{\bm{k}}$ where $\mathbf{X}_{\bm{k}}=\left(b_{\bm{k}11},\cdots,b_{\bm{k}1(d-1)},\cdots,b_{\bm{k}n(d-1))},b_{(-\bm{k})11}^{\dagger},\cdots,b_{(-\bm{k})n(d-1)}^{\dagger}\right)^{\mathsf{T}}$ and $\mathbf{H}_{\bm{k}}$ is a Hermitian matrix. It is very easy to get the energies. Define a matrix:$$
+\mathbf{g}=\begin{bmatrix}
+    \mathbf{1} & \mathbf{0}  \\
+    \mathbf{0} &  -\mathbf{1}
+    \end{bmatrix},
+$$
+where $\mathbf{1}$ means an identity matrix of dimension $n(d-1)$ and $\mathbf{0}$ means a zero matrix. To get the energies, solve the eigenvalues of matrix $\mathbf{H}.\mathbf{g}$. There will be $n(d-1)$ positive numbers and the othere negitive ones on the positive numbers times $-1$. The $n(d-1)$ numbers are the energies of excitations. After this, Plotting the numbers as with different $k$ will give you the dispersion. \\
+There is another way to get the energies and get information of the transformation. The first step is to do Cholesky decomposition $\mathbf{H}=\mathbf{K}^{\dagger}\mathbf{K}$. This requires that $\mathbf{H}$ must be positive definite, otherwise is not decomposivable. If you do not get this, it means that you made a mistake. (needs to be finished) \\
 \end{document}
