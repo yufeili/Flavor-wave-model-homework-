@@ -26,7 +26,7 @@
 \let\emptyset\varnothing
 \titlelabel{\thetitle.\quad}
 \usepackage{geometry}
-\geometry{left=1cm,right=0.5cm,top=0.5cm,bottom=2cm}
+\geometry{left=0.5cm,right=0.5cm,top=0.5cm,bottom=1.5cm}
 \newcommand{\stkout}[1]{\ifmmode\text{\sout{\ensuremath{#1}}}\else\sout{#1}\fi}
 \newcommand{\e}{\mathrm{e}}
 \newcommand{\ii}{\mathrm{i}}
@@ -37,7 +37,7 @@
 %\makeatother
 \begin{document}
 \maketitle
-The purpose of this file is to understand and develop your own program of the flavor wave model.\\
+The purpose of this file is to understand and develop your own program of the flavor wave model. There has been linear spin wave theory (LSWT) and it was proved successfully on many materials. The dispersion and cross section for inelastic neutron scattering can be correctly predicted by linear spin wave theory. However, there are some properties that can not be predicted by LSWT. First, the actual spin quantum number does not affect the theory a lot. The actual $S$ number will only be multiplied to the interactions. This means that all difference spin systems are identical to $S=1/2$ system. This directly leads to a result that the number of modes is equal to the number of spins per unit cell. This works for most of the actual materials. In these materals, all the magnon modes are close to each other energitically and they are far away from all possible extications who have much higher energiey than the magnons. However in some materails, such as Sr$_2$IrO$_4$, CoO, CoTiO$_3$, there are some modes, who are not magnons predicted by linear spin wave theory, above the magnon modes and (1) they are not far away from the magnons modes (2) they are momentum dependent. In magnetic materisl, they are usually called Spin-Orbital(SO) excitons. One way to explain the dispersion of those higher modes is to build a seperate model because they don't exist in LSWT. \\
 {\large{A}}. In this part, we will develop a method to solve the ground state without diagonalizing the Hamiltonian. \\
 \indent (1)  Assume a particle can be discribed by spin only, with $S=1$. and the Hamiltonian is 
 $$ H= S_z.
@@ -733,7 +733,7 @@ so that $$
     0 & 0 & 0& -2.04
 \end{bmatrix}$$
 This is already diagnolized. So the spectrum is firgured out. You can plot it and you should get a firgure like:
-\begin{figure*}[h]
+\begin{figure*}
     \includegraphics[width=0.9\textwidth]{1.png}
     \caption{\textbf{Dispersion of a 1D ferromagnetic chain.} $S=1$ and there is a small magnetic field.}
 \end{figure*}
