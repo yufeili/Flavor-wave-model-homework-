@@ -1,10 +1,6 @@
-\documentclass[letter]{article}
-%%\documentclass[a4paper]{article}
-%\usepackage{sectsty}
-%\sectionfont{\fontsize{8}{2}\selectfont}
-\font\myfont=cmr12 at 12pt
-\title{{\myfont Flavor wave model homework problems}}
-\usepackage{natbib}
+\documentclass[letterpaper,10pt]{article}
+\title{ Flavor wave model homework problems}
+\author{Yufei Li}
 \usepackage{graphicx}
 \usepackage{titlesec}
 \usepackage{bm}
@@ -12,6 +8,7 @@
 \usepackage{braket}
 \usepackage{mathtools}
 \usepackage{amsmath}
+\usepackage{hyperref}
 \usepackage{mathrsfs}
 \usepackage{ulem}
 \setcounter{MaxMatrixCols}{20}
@@ -19,9 +16,6 @@
 \usepackage{mathabx}
 \usepackage{ulem}
 \usepackage{textgreek}
-%\usepackage[T1]{fontenc}
-%\usepackage[type1]{libertine}
-%\usepackage{newtxmath}
 \let\oldemptyset\emptyset
 \let\emptyset\varnothing
 \titlelabel{\thetitle.\quad}
@@ -37,7 +31,7 @@
 %\makeatother
 \begin{document}
 \maketitle
-The purpose of this file is to understand and develop your own program of the flavor wave model. There has been linear spin wave theory (LSWT) and it was proved successfully on many materials. The dispersion and cross section for inelastic neutron scattering can be correctly predicted by linear spin wave theory. However, there are some properties that can not be predicted by LSWT. First, the actual spin quantum number does not affect the theory a lot. The actual $S$ number will only be multiplied to the interactions. This means that all difference spin systems are identical to $S=1/2$ system. This directly leads to a result that the number of modes is equal to the number of spins per unit cell. This works for most of the actual materials. In these materals, all the magnon modes are close to each other energitically and they are far away from all possible extications who have much higher energiey than the magnons. However in some materails, such as Sr$_2$IrO$_4$ \cite{Kim2014}, CoO, CoTiO$_3$, there are some modes, who are not magnons predicted by linear spin wave theory, above the magnon modes and (1) they are not far away from the magnons modes (2) they are momentum dependent. In magnetic materisl, they are usually called Spin-Orbital(SO) excitons. One way to explain the dispersion of those higher modes is to build a seperate model because they don't exist in LSWT. \\
+The purpose of this file is to understand and develop your own program of the flavor wave model. There has been linear spin wave theory (LSWT) and it was proved successfully on many materials. The dispersion and cross section for inelastic neutron scattering can be correctly predicted by linear spin wave theory. However, there are some properties that can not be predicted by LSWT. First, the actual spin quantum number does not affect the theory a lot. The actual $S$ number will only be multiplied to the interactions. This means that all difference spin systems are identical to $S=1/2$ system. This directly leads to a result that the number of modes is equal to the number of spins per unit cell. This works for most of the actual materials. In these materals, all the magnon modes are close to each other energitically and they are far away from all possible extications who have much higher energiey than the magnons. However in some materails, such as FeI$_2$\cite{Bai2021,FeI2THz}, Sr$_2$IrO$_4$\cite{Kim2014}, CoO\cite{CoO}, CoTiO$_3$\cite{CoTiO3}, there are some modes, who are not magnons predicted by linear spin wave theory, above the magnon modes and (1) they are not far away from the magnons modes (2) they are momentum dependent. In magnetic materils, they are usually called Spin-Orbital(SO) excitons. One way to explain the dispersion of those higher modes is to build a seperate model because they don't exist in LSWT. For this reason, a flavor wave model is proposed. In this model, each ion is treated as a vector in a larger space. The consequence is that there will be more excitations. The low-energy magnons and high-energy SO excitons can be considered simultaniously in one model. \\
 {\large{A}}. In this part, we will develop a method to solve the ground state without diagonalizing the Hamiltonian. \\
 \indent (1)  Assume a particle can be discribed by spin only, with $S=1$. and the Hamiltonian is 
 $$ H= S_z.
@@ -189,11 +183,9 @@ $$\\
 \end{aligned}
 $$\\
 \indent (c). 2D triangular ferromagnetic system with a ring-exchange and a easy plane. Since it is a 2D system, we need two integers to label unit cells. $S$ needs to be larger than 1/2. Let's assume $S=1$, The Hamiltonian is $$
-H=\sum_{i,j}g\mu _{\mathrm{B}} \bm{B}\cdot \bm{S}_{i,j}-\delta (S_i^z)^2-J_1\bm{S}_{i,j}\cdot\bm{S}_{i+1,j}-J_2\bm{S}_{i,j}\cdot\bm{S}_{i,j+1}-rS_{i,j}^+S_{i+1,j}^+S_{i,j+1}^+S_{i+1,j+1}^+-r^*S_{i,j}^-S_{i+1,j}^-S_{i,j+1}^-S_{i+1,j+1}^-
-$$
+H=\sum_{i,j}g\mu _{\mathrm{B}} \bm{B}\cdot \bm{S}_{i,j}-\delta (S_i^z)^2-J_1\bm{S}_{i,j}\cdot\bm{S}_{i+1,j}-J_2\bm{S}_{i,j}\cdot\bm{S}_{i,j+1}-rS_{i,j}^+S_{i+1,j}^+S_{i,j+1}^+S_{i+1,j+1}^+-r^*S_{i,j}^-S_{i+1,j}^-S_{i,j+1}^-S_{i+1,j+1}^-$$
 where $r$ is an arbitrary complex number. This is the number that controls the ring exchange.\\
 --------------------------------\\
-\\
 \indent (1). In this part we will show the argorithm for an arbitrary systen. We assume the system has some unit cells which can be labeled as the position of each cell $\{\bm{r}\}$, each unit cell has $N$ same atoms, which all have $d$ dimensions. The total hamiltonian should be written as $$
 H=\sum_{\bm{r}}\sum_{p=1}^{N}H_{\bm{r},p}+H_{\mathrm{interaction}}
 $$ and constained by symmetry, all the $H_{\bm{r},p}$ ahouls be same for all $\bm{r}$. The interaction part will be a sum of a list, each list of the term will have this form: $\sum_{\bm{r}}J_{(\bm{0},p_1),(\bm{r}_2,p_2)\cdots (\bm{r}_s,p_s)} \bm{X}^1_{\bm{r},p_1} \bm{X}^2_{\bm{r}+\bm{r}_2,p_2} \cdots\bm{X}^s_{\bm{r}+\bm{r}_s,p_s}$. For the three examples, we have 3, 6, and 8 terms. \\
@@ -277,7 +269,7 @@ $$\left|\psi_0\right>=\begin{bmatrix}
             1
             \end{bmatrix}
 $$
-with these numbers, we can get the transformed matrices for $S^x$, $S^y$, $S^z$( because this is a easy problem, I will be using the exact answers. In real materails, onle numerical values are available):
+with these numbers, we can get the transformed matrices for $S^x$, $S^y$, $S^z$( because this is a easy problem, I will be using the exact answers. In real materails, only numerical values are available):
 $$S^x_{mn}=\begin{bmatrix}
     0& \frac{1}{\sqrt{2}} & 0\\
     \frac{1}{\sqrt{2}} &  0 & \frac{1}{\sqrt{2}}\\
@@ -287,16 +279,14 @@ S^y_{mn}=\begin{bmatrix}
     0& -\frac{\ii}{\sqrt{2}} & 0\\
     \frac{\ii}{\sqrt{2}} &  0 & -\frac{\ii}{\sqrt{2}}\\
 0& \frac{\ii}{\sqrt{2}}&0
-    \end{bmatrix}$$ $$
-S^z_{mn}=\begin{bmatrix}
+    \end{bmatrix}$$ 
+    $$S^z_{mn}=\begin{bmatrix}
 1 & 0 & 0 \\
 0 &  0 & 0 \\
 0 &  0 & -1
-\end{bmatrix}
-$$
+\end{bmatrix}$$
 Now the operators can be written in a series However, we will rewrite the Hamiltonian so that it looks more symetric: \\
-$$
-H=\sum_{i}g\mu_{\mathrm{B}}(B^x S^x +B^y S^y+B^z S^z)-\frac{J}{2}(S_{i}^x S_{i+1}^x+S_{i}^y S_{i+1}^y+S_{i}^z S_{i+1}^z+S_{i-1}^x S_{i}^x+S_{i-1}^y S_{i}^y+S_{i-1}^z S_{i}^z)$$
+$$H=\sum_{i}g\mu_{\mathrm{B}}(B^x S^x +B^y S^y+B^z S^z)-\frac{J}{2}(S_{i}^x S_{i+1}^x+S_{i}^y S_{i+1}^y+S_{i}^z S_{i+1}^z+S_{i-1}^x S_{i}^x+S_{i-1}^y S_{i}^y+S_{i-1}^z S_{i}^z)$$
 Since there is only one atom per unit cell, we will remove the $p$ index, only write as $b_{im}$:
 %$$S_{j}^z S_{j+1}^z \approx-\left(b_{j1}^{\dagger}b_{j1}+b_{(j+1)1}^{\dagger}b_{(j+1)1}\right)-2\left(b_{j2}^{\dagger}b_{j2}+b_{(j+1)2}^{\dagger}b_{(j+1)2}\right)$$
 $$
@@ -732,11 +722,12 @@ so that $$
     0 &  0 & -(1.02-\cos k) &0\\
     0 & 0 & 0& -2.04
 \end{bmatrix}$$
-This is already diagnolized. So the spectrum is firgured out. You can plot it and you should get a firgure like \cite{fig1}\\
+This is already diagnolized. So the spectrum is firgured out. You can plot it and you should get a figure like \cite{Kim2014} Fig. \ref{fig1}\\
 \begin{figure*}
-    \includegraphics[width=0.9\textwidth]{1.png}
+    \includegraphics[width=0.9\textwidth]{1.eps}
     \caption{\textbf{Dispersion of a 1D ferromagnetic chain.} $S=1$ and there is a small magnetic field.}
     \label{fig1}
 \end{figure*}
-\bibliography{bib.bib}
+\bibliographystyle{ieeetr}
+\bibliography{main.bib}
 \end{document}
